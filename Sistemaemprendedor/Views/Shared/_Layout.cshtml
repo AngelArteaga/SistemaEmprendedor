@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ecosistema Emprendedor</title>
+
+    
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/normalize.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/icomoon.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/pogoslider.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/transitions.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/main.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/color.css" rel="stylesheet" />
+    <link href="~/Content/Template/css/responsive.css" rel="stylesheet" />
+    <script src="~/Content/Template/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery.js"></script>        
+</head>
+<body class="tg-home tg-homefive">
+    <div id="tg-wrapper" class="tg-wrapper tg-haslayout">               
+        <!--************************************
+                Header V2 Start
+        *************************************-->
+        <header id="tg-header" class="tg-header tg-headerversionthree tg-haslayout">      
+            <div class="tg-topbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <strong class="tg-logo"><a href="@Url.Action("Index", "Home")"><img src="~/Content/Template/images/logo.png" alt="Sistema Emprendedor"></a></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>                 
+            <div class="tg-navigationarea" style="background-color:#ffffff">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">                                                        
+                            <nav id="tg-nav" class="tg-nav">
+                                <div class="navbar-header">
+                                    <button id="buttonCollapse" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
+                                        <span class="sr-only">Panel Navegación</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+                                    <ul>
+                                        <li><a href="/Catalogo/Eventos" style="color:#4183c4">Eventos</a></li>
+                                        <li><a href="/Catalogo/Organizaciones" style="color:#4183c4">Organizaciones</a></li>
+                                        <li><a style="color:#4183c4" href="/Catalogo/Emprendedores">Emprendedores</a></li>
+                                        <li><a style="color:#4183c4" href="/Blog/Index">El Blog</a></li>
+                                        <li><a style="color:#4183c4" href="/Test/Index">¿En que etapa me encuentro?</a></li>
+                                        <li><a href="/Home/Contact" style="color:#4183c4">Contacto</a></li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                    <li class="menu-item-has-mega-menu menu-item-has-children">
+                                        <a style="color:#4183c4" href="javascript:void(0);">Admin</a>
+                                        <div class="mega-menu">
+                                            <ul class="mega-menu-row">
+                                                <li class="mega-menu-col">
+                                                    <a href="javascript:void(0);">Usuarios</a>
+                                                    <ul>
+                                                        <li>@Html.ActionLink("Agregar usuario", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                                        <li><a href="@Url.Action("Usuarios", "Manage")">Lista de usuarios</a></li>
+                                                        <li><a href="/Account/LogOff">Cerrar Sesión</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="mega-menu-col">
+                                                    <a href="javascript:void(0);">Base de datos</a>
+                                                    <ul>
+                                                        <li><a href="@Url.Action("AdministrarEventos", "Manage")">Eventos</a></li>
+                                                        <li><a href="@Url.Action("AdministrarOrganizaciones", "Manage")">Organizaciones</a></li>
+                                                        <li><a href="@Url.Action("AdministrarEmprendedores", "Manage")">Emprendedores</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul class="mega-menu-row">
+                                                <li class="mega-menu-col">
+                                                    <a href="javascript:void(0);">Archivos</a>
+                                                    <ul>
+                                                        <li><a href="shop.html">Lista de archivos</a></li>
+                                                        <li><a href="productdetail.html">Subir archivo</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a style="color:#4183c4" href="/Account/Login">Iniciar Sesión</a></li>
+                                        }                                        
+                                    </ul>
+                                </div>
+                            </nav>                          
+                        </div>
+                    </div>
+                </div>
+            </div>              
+        </header>
+        <!--************************************
+            Header V2 End
+    *************************************-->
+
+            <main id="tg-main" class="tg-main">
+                @RenderBody()
+            </main>
+            <hr />
+        <!--************************************
+            Footer Start
+    *************************************-->
+        <footer id="tg-footer" class="tg-footer tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tg-infobox">                            
+                            <div class="tg-aboutus">
+                                <h3>Tu opinión es muy importante.</h3>
+                                <div class="tg-description">
+                                    <p>Te invitamos a emprende@hidalgo.gob.mx o bien, visitarnos directamente en nuestras oficinas, ubicadas en Blvd. Felipe Ángeles No. 605, Col Presa Jales Norte, Pachuca de Soto, Hidalgo, México. C.P. 42080</p>
+                                    <p>Tels: (771) 715 9959, 715 9960 y 715 9961. Ext 501</p>
+                                    <p><a href="https://www.ihce.gob.mx" target="_blank">www.ihce.gob.mx</a></p>
+                                </div>
+                                <ul class="tg-socialicons">
+                                    <li class="tg-facebook"><a href="https://www.facebook.com/ihcehidalgo/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="tg-twitter"><a href="https://twitter.com/ihcehidalgo" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="tg-youtube"><a href="jhttps://www.youtube.com/user/ihcegob" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+                                    <li class="tg-whatsapp"><a href="https://www.periscope.tv/IHCEHidalgo/1ZkKzWLyRwwGv" target="_blank"><i class="fa fa-map-marker"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="tg-footerbar">
+                <div class="container">
+                    <nav class="tg-addnav">
+                        <ul>
+                            <li><a href="#">Politica de Privacidad</a></li>                          
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </nav>
+                    <p class="tg-coptrights">Copyright © 2017 All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+        <!--************************************
+            Footer End
+    *************************************-->
+        
+        
+
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+            @**************************************-->*@
+            <script src="~/Content/Template/js/vendor/jquery-library.js"></script>
+            <script src="~/Content/Template/js/vendor/bootstrap.min.js"></script>
+            
+            <script src="~/Content/Template/js/owl.carousel.min.js"></script>
+            <script src="~/Content/Template/js/isotope.pkgd.js"></script>
+            <script src="~/Content/Template/js/prettyPhoto.js"></script>
+            <script src="~/Content/Template/js/pogoslider.js"></script>
+            <script src="~/Content/Template/js/countdown.js"></script>
+            <script src="~/Content/Template/js/jquery-ui.js"></script>
+            <script src="~/Content/Template/js/kinetic.js"></script>
+            <script src="~/Content/Template/js/countTo.js"></script>
+            <script src="~/Content/Template/js/appear.js"></script>
+            <script src="~/Content/Template/js/gmap3.js"></script>
+            <script src="~/Content/Template/js/main.js"></script>
+            <script src="~/Content/DataTables/datatables.js"></script>
+            <script src="~/Content/DataTables/Buttons-1.4.2/js/dataTables.buttons.js"></script>
+        <script>            
+            $("#buttonCollapse").click(function () {
+                var className = $('#tg-navigation').attr('class');
+                //alert(className);
+                if (className == 'navbar-collapse tg-navigation collapse in') {
+                    //alert('entra');
+                    $('#tg-navigation').removeClass();
+                    className = $('#tg-navigation').attr('class');
+                    //alert(className);
+                    $('#tg-navigation').addClass('navbar-collapse tg-navigation collapse');
+                    className = $('#tg-navigation').attr('class');
+                    //alert(className);
+                }
+                if (className == 'navbar-collapse tg-navigation in collapse') {
+                   // alert('entra');
+                    $('#tg-navigation').removeClass();
+                    className = $('#tg-navigation').attr('class');
+                   // alert(className);
+                    $('#tg-navigation').addClass('navbar-collapse tg-navigation collapse');
+                    className = $('#tg-navigation').attr('class');
+                  //  alert(className);
+                }
+            }
+        );
+        </script>
+</div>
+</body>
+</html>

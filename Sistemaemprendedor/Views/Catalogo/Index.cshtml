@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<h2>Index</h2>
+<ul>
+    <li><a href="~/Catalogo/Eventos">Eventos</a></li>
+    <li><a href="~/Catalogo/Empresas">Empresas</a></li>
+    <li><a href="~/Catalogo/Emprendedores">Emprendedores</a></li>
+</ul>
+
+@using (Html.BeginForm("Index", "Catalogo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <input type="submit" value="Upload" class="submit" />
+    <br /><br />
+    @ViewBag.Message
+}

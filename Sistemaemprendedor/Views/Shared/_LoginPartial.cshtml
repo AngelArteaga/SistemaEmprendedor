@@ -1,0 +1,7 @@
+﻿@using Microsoft.AspNet.Identity
+
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+    {
+        @Html.AntiForgeryToken()                    
+            <a style="color:#4183c4" href="javascript:document.getElementById('logoutForm').submit()"><span class="icon-user-minus"></span>Cerrar Sesión</a>
+    }

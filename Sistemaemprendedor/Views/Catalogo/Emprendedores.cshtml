@@ -1,0 +1,430 @@
+﻿@model  Sistemaemprendedor.Models.CatalogoModelo
+@{
+    ViewBag.Title = "Emprendedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li class="tg-active">Emprendedores</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<!--************************************
+        Grid Start
+*************************************-->
+<div class="tg-sectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                <div class="tg-sectionhead">
+                    <div class="tg-sectiontitles">
+                        <h2>Lista de emprendedores</h2>
+                        <h3>Ecosistema emprendedor</h3>
+                    </div>
+                    <div class="tg-description">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="tg-attorneys">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" /></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Accounting</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Marquetta Tapscott</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="/Catalogo/Emprendedor">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Business Marketing</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Emerson Perrotti</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Business Support</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr4.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Account Executives</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Lemuel Dauphinais</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Auditing Clerk</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Marquetta Tapscott</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Business Management</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Emerson Perrotti</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Accountant</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr4.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Customer support</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Lemuel Dauphinais</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Education Program</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Accounting Assistant</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Lemuel Dauphinais</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Accounting</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Marquetta Tapscott</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <div class="tg-themepost tg-expertpost">
+                        <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr4.jpg" alt="image description"></a></figure>
+                        <div class="tg-themepostcontent">
+                            <span class="tg-category"><a href="javascript:void(0);">Account Executives</a></span>
+                            <div class="tg-themeposttitle">
+                                <h3><a href="javascript:void(0);">Emerson Perrotti</a></h3>
+                            </div>
+                            <ul class="tg-contactinfo">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+4 1234 5678 - 9</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span><a href="mailto:name@domain.com">name@domain.com</a></span>
+                                </li>
+                            </ul>
+                            <ul class="tg-socialicons">
+                                <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <a class="tg-btnreadmore" href="javascript:void(0);">ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--************************************
+        Grid End
+*************************************-->
+
+<!--************************************
+            Sin Resultados
+*************************************-->
+@*<div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="tg-404error">
+                <div class="tg-404errorcontet">
+                    <h1>404</h1>
+                    <div class="tg-404holder">
+                        <h2>Lo sentimos!</h2>
+                        <h3>No existen eventos registrados en este momento</h3>
+                    </div>
+                </div>
+                <div class="col-xs-offset-0 col-xs-12 col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+                    <form class="tg-formtheme tg-form404search">
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="search" name="search" class="form-control" placeholder="Busqueda">
+                                <button class="tg-btn" type="submit">Buscar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="tg-btnarea">
+                        <a class="tg-btn" href="@Url.Action("Evento", "Nuevo")">Agregar Evento</a>
+                    </div>
+                    <div class="tg-btngoback">
+                        <span>ó</span><a href="@Url.Action("Index", "Home")">
+                            Ir al inicio.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!--************************************
+        404 Error End
+*************************************-->
+

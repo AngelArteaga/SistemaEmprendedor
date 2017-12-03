@@ -1,0 +1,909 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistemaEmprendedorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emprendedor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="20" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Sector" Type="varchar" MaxLength="20" />
+          <Property Name="Etapa" Type="varchar" MaxLength="20" />
+          <Property Name="Direccion" Type="varchar" MaxLength="150" />
+          <Property Name="IdRegion" Type="int" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Correo" Type="varchar" MaxLength="30" />
+          <Property Name="WebSite" Type="varchar" MaxLength="100" />
+          <Property Name="Facebook" Type="varchar" MaxLength="30" />
+          <Property Name="Twitter" Type="varchar" MaxLength="30" />
+          <Property Name="Imagen" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="FechaEvento" Type="varchar" MaxLength="50" />
+          <Property Name="HoraInicio" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="WebPage" Type="varchar" MaxLength="30" />
+          <Property Name="Organizador" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="150" />
+          <Property Name="idTipoEvento" Type="int" />
+          <Property Name="idRegion" Type="int" />
+          <Property Name="Cp" Type="varchar" MaxLength="10" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" />
+          <Property Name="Calle" Type="varchar" MaxLength="50" />
+          <Property Name="ShortDesc" Type="varchar" MaxLength="50" />
+          <Property Name="Month" Type="varchar" MaxLength="20" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Year" Type="int" />
+        </EntityType>
+        <EntityType Name="Mentores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Correo" Type="varchar" MaxLength="30" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="LinkedIn" Type="varchar" MaxLength="30" />
+          <Property Name="DesarrolloNegocio" Type="int" />
+          <Property Name="Mercadotecnia" Type="int" />
+          <Property Name="DesarrolloSoftware" Type="int" />
+          <Property Name="DesarrolloHardware" Type="int" />
+          <Property Name="Pitch" Type="int" />
+          <Property Name="Finanzas" Type="int" />
+          <Property Name="Contabilidad" Type="int" />
+          <Property Name="Validación" Type="int" />
+          <Property Name="MinimoVariable" Type="int" />
+          <Property Name="Legal" Type="int" />
+          <Property Name="Startups" Type="int" />
+          <Property Name="Administracion" Type="int" />
+        </EntityType>
+        <EntityType Name="Organizacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Correo" Type="varchar" MaxLength="30" />
+          <Property Name="Correo2" Type="varchar" MaxLength="30" />
+          <Property Name="Correo3" Type="varchar" MaxLength="30" />
+          <Property Name="Correo4" Type="varchar" MaxLength="30" />
+          <Property Name="IdRegion" Type="int" />
+          <Property Name="OrganismoApoyo" Type="varchar" MaxLength="30" />
+          <Property Name="ReconocidoINADEM" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="ApoyosEmprendedor" Type="varchar" MaxLength="500" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="WebPage" Type="varchar" MaxLength="30" />
+          <Property Name="Facebook" Type="varchar" MaxLength="30" />
+          <Property Name="Twitter" Type="varchar" MaxLength="30" />
+          <Property Name="Imagen" Type="varchar" MaxLength="30" />
+          <Property Name="Region" Type="varchar" MaxLength="200" />
+          <Property Name="Categoria" Type="int" />
+        </EntityType>
+        <EntityType Name="ProgramaEmpresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regiones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroAEvento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="IdEvento" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="30" />
+          <Property Name="Perfil" Type="varchar" MaxLength="30" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="30" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="30" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="CURP" Type="varchar" MaxLength="30" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" />
+          <Property Name="Escolaridad" Type="varchar" MaxLength="30" />
+          <Property Name="Domicilio" Type="varchar" MaxLength="100" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" />
+          <Property Name="IdRegion" Type="int" />
+          <Property Name="Empresa" Type="varchar" MaxLength="200" />
+          <Property Name="Etapa" Type="varchar" MaxLength="30" />
+          <Property Name="Sector" Type="varchar" MaxLength="30" />
+          <Property Name="Necesidad" Type="varchar" MaxLength="500" />
+          <Property Name="Calle" Type="varchar" MaxLength="50" />
+          <Property Name="NumExt" Type="varchar" MaxLength="5" />
+          <Property Name="Colonia" Type="varchar" MaxLength="50" />
+          <Property Name="CP" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Representante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="int" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="date" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Usuario_actualizacion" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="30" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="LinkedIn" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="idTipoEvento" />
+          </Key>
+          <Property Name="idTipoEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <Association Name="FK_Emprendedor_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="0..1" />
+          <End Role="Emprendedor" Type="Self.Emprendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emprendedor">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emprendedor_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="0..1" />
+          <End Role="Emprendedor" Type="Self.Emprendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emprendedor">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mentores_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="1" />
+          <End Role="Mentores" Type="Self.Mentores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mentores">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organizacion_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="0..1" />
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organizacion">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramaEmpresa_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="1" />
+          <End Role="ProgramaEmpresa" Type="Self.ProgramaEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProgramaEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroAEvento_Evento">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="RegistroAEvento" Type="Self.RegistroAEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistroAEvento">
+              <PropertyRef Name="IdEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaEmprendedorModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emprendedor" EntityType="Self.Emprendedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mentores" EntityType="Self.Mentores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizacion" EntityType="Self.Organizacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramaEmpresa" EntityType="Self.ProgramaEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regiones" EntityType="Self.Regiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroAEvento" EntityType="Self.RegistroAEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Representante" EntityType="Self.Representante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Emprendedor_Organizacion" Association="Self.FK_Emprendedor_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Emprendedor" EntitySet="Emprendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprendedor_Regiones" Association="Self.FK_Emprendedor_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Emprendedor" EntitySet="Emprendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mentores_Organizacion" Association="Self.FK_Mentores_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Mentores" EntitySet="Mentores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organizacion_Regiones" Association="Self.FK_Organizacion_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Organizacion" EntitySet="Organizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramaEmpresa_Organizacion" Association="Self.FK_ProgramaEmpresa_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="ProgramaEmpresa" EntitySet="ProgramaEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroAEvento_Evento" Association="Self.FK_RegistroAEvento_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="RegistroAEvento" EntitySet="RegistroAEvento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaEmprendedorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Emprendedor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sexo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Etapa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organizacion" Relationship="Self.FK_Emprendedor_Organizacion" FromRole="Emprendedor" ToRole="Organizacion" />
+          <NavigationProperty Name="Regiones" Relationship="Self.FK_Emprendedor_Regiones" FromRole="Emprendedor" ToRole="Regiones" />
+        </EntityType>
+        <EntityType Name="Mentores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedIn" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DesarrolloNegocio" Type="Int32" />
+          <Property Name="Mercadotecnia" Type="Int32" />
+          <Property Name="DesarrolloSoftware" Type="Int32" />
+          <Property Name="DesarrolloHardware" Type="Int32" />
+          <Property Name="Pitch" Type="Int32" />
+          <Property Name="Finanzas" Type="Int32" />
+          <Property Name="Contabilidad" Type="Int32" />
+          <Property Name="Validación" Type="Int32" />
+          <Property Name="MinimoVariable" Type="Int32" />
+          <Property Name="Legal" Type="Int32" />
+          <Property Name="Startups" Type="Int32" />
+          <Property Name="Administracion" Type="Int32" />
+          <NavigationProperty Name="Organizacion" Relationship="Self.FK_Mentores_Organizacion" FromRole="Mentores" ToRole="Organizacion" />
+        </EntityType>
+        <EntityType Name="Organizacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Correo2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Correo3" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Correo4" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="OrganismoApoyo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReconocidoINADEM" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ApoyosEmprendedor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WebPage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emprendedor" Relationship="Self.FK_Emprendedor_Organizacion" FromRole="Organizacion" ToRole="Emprendedor" />
+          <NavigationProperty Name="Mentores" Relationship="Self.FK_Mentores_Organizacion" FromRole="Organizacion" ToRole="Mentores" />
+          <NavigationProperty Name="Regiones" Relationship="Self.FK_Organizacion_Regiones" FromRole="Organizacion" ToRole="Regiones" />
+          <NavigationProperty Name="ProgramaEmpresa" Relationship="Self.FK_ProgramaEmpresa_Organizacion" FromRole="Organizacion" ToRole="ProgramaEmpresa" />
+          <Property Name="Region" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Categoria" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProgramaEmpresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Organizacion" Relationship="Self.FK_ProgramaEmpresa_Organizacion" FromRole="ProgramaEmpresa" ToRole="Organizacion" />
+        </EntityType>
+        <EntityType Name="Regiones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Emprendedor" Relationship="Self.FK_Emprendedor_Regiones" FromRole="Regiones" ToRole="Emprendedor" />
+          <NavigationProperty Name="Organizacion" Relationship="Self.FK_Organizacion_Regiones" FromRole="Regiones" ToRole="Organizacion" />
+        </EntityType>
+        <EntityType Name="Representante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedIn" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Emprendedor_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="0..1" />
+          <End Role="Emprendedor" Type="Self.Emprendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emprendedor">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emprendedor_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="0..1" />
+          <End Role="Emprendedor" Type="Self.Emprendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emprendedor">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mentores_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="1" />
+          <End Role="Mentores" Type="Self.Mentores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mentores">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organizacion_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="0..1" />
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organizacion">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramaEmpresa_Organizacion">
+          <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="1" />
+          <End Role="ProgramaEmpresa" Type="Self.ProgramaEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProgramaEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaEmprendedorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Emprendedor" EntityType="Self.Emprendedor" />
+          <EntitySet Name="Mentores" EntityType="Self.Mentores" />
+          <EntitySet Name="Organizacion" EntityType="Self.Organizacion" />
+          <EntitySet Name="ProgramaEmpresa" EntityType="Self.ProgramaEmpresa" />
+          <EntitySet Name="Regiones" EntityType="Self.Regiones" />
+          <EntitySet Name="Representante" EntityType="Self.Representante" />
+          <AssociationSet Name="FK_Emprendedor_Organizacion" Association="Self.FK_Emprendedor_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Emprendedor" EntitySet="Emprendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emprendedor_Regiones" Association="Self.FK_Emprendedor_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Emprendedor" EntitySet="Emprendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mentores_Organizacion" Association="Self.FK_Mentores_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Mentores" EntitySet="Mentores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organizacion_Regiones" Association="Self.FK_Organizacion_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Organizacion" EntitySet="Organizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProgramaEmpresa_Organizacion" Association="Self.FK_ProgramaEmpresa_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="ProgramaEmpresa" EntitySet="ProgramaEmpresa" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="SistemaEmprendedorModel.AspNetUsers" />
+          <EntitySet Name="RegistroAEvento" EntityType="SistemaEmprendedorModel.RegistroAEvento" />
+          <EntitySet Name="TipoEvento" EntityType="SistemaEmprendedorModel.TipoEvento" />
+          <EntitySet Name="Evento" EntityType="SistemaEmprendedorModel.Evento" />
+          <AssociationSet Name="FK_RegistroAEvento_Evento" Association="SistemaEmprendedorModel.FK_RegistroAEvento_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="RegistroAEvento" EntitySet="RegistroAEvento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RegistroAEvento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="IdEvento" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Perfil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CURP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Escolaridad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="Empresa" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Etapa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Necesidad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumExt" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Evento" Relationship="SistemaEmprendedorModel.FK_RegistroAEvento_Evento" FromRole="RegistroAEvento" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="idTipoEvento" />
+          </Key>
+          <Property Name="idTipoEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_actualizacion" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HoraInicio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WebPage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Organizador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoEvento" Type="Int32" />
+          <Property Name="idRegion" Type="Int32" />
+          <Property Name="Cp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Month" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <NavigationProperty Name="RegistroAEvento" Relationship="SistemaEmprendedorModel.FK_RegistroAEvento_Evento" FromRole="Evento" ToRole="RegistroAEvento" />
+        </EntityType>
+        <Association Name="FK_RegistroAEvento_Evento">
+          <End Type="SistemaEmprendedorModel.Evento" Role="Evento" Multiplicity="1" />
+          <End Type="SistemaEmprendedorModel.RegistroAEvento" Role="RegistroAEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistroAEvento">
+              <PropertyRef Name="IdEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaEmprendedorModelStoreContainer" CdmEntityContainer="SistemaEmprendedorEntities">
+          <EntitySetMapping Name="Emprendedor">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Emprendedor">
+              <MappingFragment StoreEntitySet="Emprendedor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mentores">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Mentores">
+              <MappingFragment StoreEntitySet="Mentores">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+                <ScalarProperty Name="DesarrolloNegocio" ColumnName="DesarrolloNegocio" />
+                <ScalarProperty Name="Mercadotecnia" ColumnName="Mercadotecnia" />
+                <ScalarProperty Name="DesarrolloSoftware" ColumnName="DesarrolloSoftware" />
+                <ScalarProperty Name="DesarrolloHardware" ColumnName="DesarrolloHardware" />
+                <ScalarProperty Name="Pitch" ColumnName="Pitch" />
+                <ScalarProperty Name="Finanzas" ColumnName="Finanzas" />
+                <ScalarProperty Name="Contabilidad" ColumnName="Contabilidad" />
+                <ScalarProperty Name="Validación" ColumnName="Validación" />
+                <ScalarProperty Name="MinimoVariable" ColumnName="MinimoVariable" />
+                <ScalarProperty Name="Legal" ColumnName="Legal" />
+                <ScalarProperty Name="Startups" ColumnName="Startups" />
+                <ScalarProperty Name="Administracion" ColumnName="Administracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizacion">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Organizacion">
+              <MappingFragment StoreEntitySet="Organizacion">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Correo2" ColumnName="Correo2" />
+                <ScalarProperty Name="Correo3" ColumnName="Correo3" />
+                <ScalarProperty Name="Correo4" ColumnName="Correo4" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="OrganismoApoyo" ColumnName="OrganismoApoyo" />
+                <ScalarProperty Name="ReconocidoINADEM" ColumnName="ReconocidoINADEM" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ApoyosEmprendedor" ColumnName="ApoyosEmprendedor" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="WebPage" ColumnName="WebPage" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramaEmpresa">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.ProgramaEmpresa">
+              <MappingFragment StoreEntitySet="ProgramaEmpresa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regiones">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Regiones">
+              <MappingFragment StoreEntitySet="Regiones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Representante">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Representante">
+              <MappingFragment StoreEntitySet="Representante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroAEvento">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.RegistroAEvento">
+              <MappingFragment StoreEntitySet="RegistroAEvento">
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="NumExt" ColumnName="NumExt" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Necesidad" ColumnName="Necesidad" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+                <ScalarProperty Name="Escolaridad" ColumnName="Escolaridad" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEvento">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.TipoEvento">
+              <MappingFragment StoreEntitySet="TipoEvento">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idTipoEvento" ColumnName="idTipoEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Cp" ColumnName="Cp" />
+                <ScalarProperty Name="idRegion" ColumnName="idRegion" />
+                <ScalarProperty Name="idTipoEvento" ColumnName="idTipoEvento" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="Organizador" ColumnName="Organizador" />
+                <ScalarProperty Name="WebPage" ColumnName="WebPage" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Usuario_actualizacion" ColumnName="Usuario_actualizacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

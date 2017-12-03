@@ -1,0 +1,133 @@
+﻿@model  Sistemaemprendedor.Models.ManageCatalogo
+@{
+    ViewBag.Title = "AdministrarEventos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li class="tg-active">Administrar Eventos</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+@if (Model.ListaEventos != null)
+{
+    <div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="row">
+                <div id="tg-twocolumns" class="tg-twocolumns">
+                    <div class="col-xs-12 col-md-10 col-lg-12">
+                        <div id="tg-content" class="tg-content">
+                            <div class="tg-sectionhead">
+                                <div class="tg-sectiontitles">
+                                    <h2>Lista de Eventos</h2>
+                                </div>
+                                <div class="tg-description">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="tg-eventdetail">
+                                <table id="Eventos" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Página web</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var evento in Model.ListaEventos)
+                                        {
+                                            <tr>
+                                                <td>@evento.Nombre</td>
+                                                <td>@evento.Descripcion</td>
+                                                <td>
+                                                    <a href="/Manage/Index" style="float:initial" class=""><span class="glyphicon glyphicon-remove"></span> Eliminar  </a>
+                                                    <a href="/Account/Login" style="float:initial" class=""><span class="glyphicon glyphicon-refresh"></span> Cambiar contraseña  </a>
+                                                    <a href="/Account/Login" style="float:initial" class=""><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <!--************************************
+                Sin Resultados
+    *************************************-->
+    <div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="tg-404error">
+                <div class="tg-404errorcontet">
+                    <h1>404</h1>
+                    <div class="tg-404holder">
+                        <h2>Lo sentimos!</h2>
+                        <h3>No existen organizaciones registradas en este momento</h3>
+                    </div>
+                </div>
+                <div class="col-xs-offset-0 col-xs-12 col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+                    <form class="tg-formtheme tg-form404search">
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="search" name="search" class="form-control" placeholder="Busqueda">
+                                <button class="tg-btn" type="submit">Buscar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="tg-btnarea">
+                        <a class="tg-btn" href="@Url.Action("Organizacion", "Nuevo")">Agregar Organización</a>
+                    </div>
+                    <div class="tg-btngoback">
+                        <span>ó</span><a href="@Url.Action("Index", "Home")">
+                            Ir al inicio.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            404 Error End
+    *************************************-->
+
+}
+
+<script>
+
+    $(document).ready(function () {
+        $('#Eventos').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "search": "Buscar:",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Sigueinte"
+                }
+            },
+            buttons: [
+        'copy', 'excel', 'pdf'
+            ]
+        });
+    });
+</script>
+

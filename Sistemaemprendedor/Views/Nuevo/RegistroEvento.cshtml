@@ -1,0 +1,342 @@
+﻿@using Sistemaemprendedor.Models
+@model NuevoAsistente
+@{
+    ViewBag.Title = "RegistroEvento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Sistemaemprendedor.Models.ActionResponses ActionResponses = ViewBag.ActionResponses;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("Eventos", "Catalogo")">Eventos</a></li>
+                @if (Model.TituloEvento != null)
+                {
+                    <li><a href="@Url.Action("Evento", "Catalogo", new { id = Model.idEvento })">@Model.TituloEvento</a></li>
+                }                
+                <li class="tg-active">Registro</li>
+            </ol>
+
+        </div>
+    </div>
+</div>
+<div class="tg-haslayout">
+    <div class="tg-sectionhead">
+        <div class="tg-sectiontitles">
+            <h2>Registro de Asistente</h2>
+            <h3>Llena los siguientes campos</h3>
+        </div>
+        <div class="tg-description">
+            <p></p>
+        </div>
+    </div>
+    <div class="container">
+        @if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.SUCCESS)
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                    <div class="alert alert-success tg-alertmessage fade in">
+                        <i class="fa fa-check"></i>
+                        <span>@ActionResponses.Messages</span>
+                    </div>
+                    <div class="" style="text-align:center">
+                        <a href="/Catalogo/Evento" class="btn btn-primary"><i class="icon-ok-circle icon-white"></i>Aceptar</a>
+                    </div>
+                </div>                
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                    @if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.ERROR)
+                {
+                        <div class="alert alert-danger tg-alertmessage fade in">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <span>@ActionResponses.Messages</span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                @using (Html.BeginForm("RegistroEvento", "Nuevo", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <section id="newAccessEventForm">
+                        <span>
+                            <p>
+                                Se considera MIPYME a los empresarios registrados en la Secretaria de Hacienda y Crédito
+                                Público (SHCP) y en del Servicio de Administración Tributaria (SAT), ya sea como Persona Física
+                                o Persona Moral.
+                            </p>
+                        </span>
+                        <span>
+                            <p>
+                                Se considera Emprendedor a aquella persona que apenas va a iniciar su modelo de negocio y/o
+                                que aún no se encuentra dada de alta en la SHCP.
+                            </p>
+                        </span>
+                        <div id="tg-twocolumns" class="tg-twocolumns">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-left">                                
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Perfil)
+                                    @Html.DropDownListFor(m => m.Perfil, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Emprendedor", Text = "Emprendedor"},
+                                new SelectListItem{Value="MIPYME", Text = "MIPYME"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Perfil, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Correo)
+                                    @Html.TextBoxFor(m => m.Correo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Nombre)
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ApellidoPat)
+                                    @Html.TextBoxFor(m => m.ApellidoPat, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ApellidoPat, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ApellidoMat)
+                                    @Html.TextBoxFor(m => m.ApellidoMat, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ApellidoMat, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.FechaNacimiento)
+                                    @Html.TextBoxFor(m => m.FechaNacimiento, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.FechaNacimiento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Edad)
+                                    @Html.TextBoxFor(m => m.Edad, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Edad, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Estado)
+                                    @Html.TextBoxFor(m => m.Estado, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Curp)
+                                    @Html.TextBoxFor(m => m.Curp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Curp, "", new { @class = "text-danger" })
+                                </div>
+                                <a href="https://consultas.curp.gob.mx/" target="_blank">Obtener mi CURP</a>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Telefono)
+                                    @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="visibility:hidden">
+                                    @Html.TextBoxFor(m => m.idEvento, new { @class = "form-control" })
+                                </div>                                
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Sexo)
+                                    @Html.DropDownListFor(m => m.Sexo, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Masculino", Text = "Masculino"},
+                                new SelectListItem{Value="Femenino", Text = "Femenino"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Sexo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Escolaridad)
+                                    @Html.DropDownListFor(m => m.Escolaridad, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Primaria", Text = "Primaria"},
+                                new SelectListItem{Value="Secundaria", Text = "Secundaria"},
+                                new SelectListItem{Value="Preparatoria", Text = "Preparatoria"},
+                                new SelectListItem{Value="Licenciatura", Text = "Licenciatura"},
+                                new SelectListItem{Value="Posgrado", Text = "Posgrado"},
+                                new SelectListItem{Value="Otro", Text = "Otro"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Escolaridad, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Calle)
+                                    @Html.TextBoxFor(m => m.Calle, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Calle, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NumExt)
+                                    @Html.TextBoxFor(m => m.NumExt, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NumExt, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Colonia)
+                                    @Html.TextBoxFor(m => m.Colonia, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Colonia, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Cp)
+                                    @Html.TextBoxFor(m => m.Cp, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Cp, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Municipio)
+                                    @Html.DropDownListFor(m => m.Municipio, new List<SelectListItem> {
+                                new SelectListItem{Value="Selecciona una ciudad", Text = "Selecciona una ciudad"},
+                                new SelectListItem{Value="Acatlan ", Text = "Acatlan"},
+                                new SelectListItem{Value="Acaxochitlan ", Text = "Acaxochitlan"},
+                                new SelectListItem{Value="Actopan ", Text = "Actopan"},
+                                new SelectListItem{Value="Agua Blanca de Iturbide ", Text = "Agua Blanca de Iturbide"},
+                                new SelectListItem{Value="Ajacuba ", Text = "Ajacuba"},
+                                new SelectListItem{Value="Alfajayucan ", Text = "Alfajayucan"},
+                                new SelectListItem{Value="Almoloya ", Text = "Almoloya"},
+                                new SelectListItem{Value="Apan ", Text = "Apan"},
+                                new SelectListItem{Value="El Arenal ", Text = "El Arenal"},
+                                new SelectListItem{Value="Atitalaquia ", Text = "Atitalaquia"},
+                                new SelectListItem{Value="Atlapexco ", Text = "Atlapexco"},
+                                new SelectListItem{Value="Atotonilco el Grande ", Text = "Atotonilco el Grande"},
+                                new SelectListItem{Value="Atotonilco de Tula ", Text = "Atotonilco de Tula"},
+                                new SelectListItem{Value="Calnali ", Text = "Calnali"},
+                                new SelectListItem{Value="Cardonal ", Text = "Cardonal"},
+                                new SelectListItem{Value="Cuautepec de Hinojosa ", Text = "Cuautepec de Hinojosa"},
+                                new SelectListItem{Value="Chapantongo ", Text = "Chapantongo"},
+                                new SelectListItem{Value="Chapulhuacan ", Text = "Chapulhuacan"},
+                                new SelectListItem{Value="Chilcuautla ", Text = "Chilcuautla"},
+                                new SelectListItem{Value="Eloxochitlan ", Text = "Eloxochitlan"},
+                                new SelectListItem{Value="Emiliano Zapata ", Text = "Emiliano Zapata"},
+                                new SelectListItem{Value="Epazoyucan ", Text = "Epazoyucan"},
+                                new SelectListItem{Value="Francisco I. Madero ", Text = "Francisco I. Madero"},
+                                new SelectListItem{Value="Huasca de Ocampo ", Text = "Huasca de Ocampo"},
+                                new SelectListItem{Value="Huautla ", Text = "Huautla"},
+                                new SelectListItem{Value="Huazalingo ", Text = "Huazalingo"},
+                                new SelectListItem{Value="Huehuetla ", Text = "Huehuetla"},
+                                new SelectListItem{Value="Huejutla de Reyes ", Text = "Huejutla de Reyes"},
+                                new SelectListItem{Value="Huichapan ", Text = "Huichapan"},
+                                new SelectListItem{Value="Ixmiquilpan ", Text = "Ixmiquilpan"},
+                                new SelectListItem{Value="Jacala de Ledezma ", Text = "Jacala de Ledezma"},
+                                new SelectListItem{Value="Jaltocan ", Text = "Jaltocan"},
+                                new SelectListItem{Value="Juarez Hidalgo ", Text = "Juarez Hidalgo"},
+                                new SelectListItem{Value="Lolotla ", Text = "Lolotla"},
+                                new SelectListItem{Value="Metepec ", Text = "Metepec"},
+                                new SelectListItem{Value="San Agustin Metzquititlan ", Text = "San Agustin Metzquititlan"},
+                                new SelectListItem{Value="Metztitlan ", Text = "Metztitlan"},
+                                new SelectListItem{Value="Mineral del Chico ", Text = "Mineral del Chico"},
+                                new SelectListItem{Value="Mineral del Monte ", Text = "Mineral del Monte"},
+                                new SelectListItem{Value="La Mision ", Text = "La Mision"},
+                                new SelectListItem{Value="Mixquiahuala de Juarez ", Text = "Mixquiahuala de Juarez"},
+                                new SelectListItem{Value="Molango de Escamilla ", Text = "Molango de Escamilla"},
+                                new SelectListItem{Value="Nicolas Flores ", Text = "Nicolas Flores"},
+                                new SelectListItem{Value="Nopala de Villagran ", Text = "Nopala de Villagran"},
+                                new SelectListItem{Value="Omitlan de Juarez ", Text = "Omitlan de Juarez"},
+                                new SelectListItem{Value="San Felipe Orizatlan ", Text = "San Felipe Orizatlan"},
+                                new SelectListItem{Value="Pacula ", Text = "Pacula"},
+                                new SelectListItem{Value="Pachuca de Soto ", Text = "Pachuca de Soto"},
+                                new SelectListItem{Value="Pisaflores ", Text = "Pisaflores"},
+                                new SelectListItem{Value="Progreso de Obregon ", Text = "Progreso de Obregon"},
+                                new SelectListItem{Value="Mineral de la Reforma ", Text = "Mineral de la Reforma"},
+                                new SelectListItem{Value="San Agustin Tlaxiaca ", Text = "San Agustin Tlaxiaca"},
+                                new SelectListItem{Value="San Bartolo Tutotepec ", Text = "San Bartolo Tutotepec"},
+                                new SelectListItem{Value="San Salvador ", Text = "San Salvador"},
+                                new SelectListItem{Value="Santiago de Anaya ", Text = "Santiago de Anaya"},
+                                new SelectListItem{Value="Santiago Tulantepec de Lugo Guerrero ", Text = "Santiago Tulantepec de Lugo Guerrero"},
+                                new SelectListItem{Value="Singuilucan ", Text = "Singuilucan"},
+                                new SelectListItem{Value="Tasquillo ", Text = "Tasquillo"},
+                                new SelectListItem{Value="Tecozautla ", Text = "Tecozautla"},
+                                new SelectListItem{Value="Tenango de Doria ", Text = "Tenango de Doria"},
+                                new SelectListItem{Value="Tepeapulco ", Text = "Tepeapulco"},
+                                new SelectListItem{Value="Tepehuacan de Guerrero ", Text = "Tepehuacan de Guerrero"},
+                                new SelectListItem{Value="Tepeji del Rio de Ocampo ", Text = "Tepeji del Rio de Ocampo"},
+                                new SelectListItem{Value="Tepetitlan ", Text = "Tepetitlan"},
+                                new SelectListItem{Value="Tetepango ", Text = "Tetepango"},
+                                new SelectListItem{Value="Villa de Tezontepec ", Text = "Villa de Tezontepec"},
+                                new SelectListItem{Value="Tezontepec de Aldama ", Text = "Tezontepec de Aldama"},
+                                new SelectListItem{Value="Tianguistengo ", Text = "Tianguistengo"},
+                                new SelectListItem{Value="Tizayuca ", Text = "Tizayuca"},
+                                new SelectListItem{Value="Tlahuelilpan ", Text = "Tlahuelilpan"},
+                                new SelectListItem{Value="Tlahuiltepa ", Text = "Tlahuiltepa"},
+                                new SelectListItem{Value="Tlanalapa ", Text = "Tlanalapa"},
+                                new SelectListItem{Value="Tlanchinol ", Text = "Tlanchinol"},
+                                new SelectListItem{Value="Tlaxcoapan ", Text = "Tlaxcoapan"},
+                                new SelectListItem{Value="Tolcayuca ", Text = "Tolcayuca"},
+                                new SelectListItem{Value="Tula de Allende ", Text = "Tula de Allende"},
+                                new SelectListItem{Value="Tulancingo de Bravo ", Text = "Tulancingo de Bravo"},
+                                new SelectListItem{Value="Xochiatipan ", Text = "Xochiatipan"},
+                                new SelectListItem{Value="Xochicoatlan ", Text = "Xochicoatlan"},
+                                new SelectListItem{Value="Yahualica ", Text = "Yahualica"},
+                                new SelectListItem{Value="Zacualtipan de Angeles ", Text = "Zacualtipan de Angeles"},
+                                new SelectListItem{Value="Zapotlan de Juarez ", Text = "Zapotlan de Juarez"},
+                                new SelectListItem{Value="Zempoala ", Text = "Zempoala"},
+                                new SelectListItem{Value="Zimapan ", Text = "Zimapan"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Municipio, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Empresa)
+                                    @Html.TextBoxFor(m => m.Empresa, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Empresa, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Etapa)
+                                    @Html.DropDownListFor(m => m.Etapa, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Idea", Text = "Idea"},
+                                new SelectListItem{Value="Inicio", Text = "Inicio"},
+                                new SelectListItem{Value="Crecimiento", Text = "Crecimiento"},
+                                new SelectListItem{Value="Maduración", Text = "Maduración"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Etapa, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Sector)
+                                    @Html.DropDownListFor(m => m.Sector, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Industria", Text = "Industria"},
+                                new SelectListItem{Value="Comercio", Text = "Comercio"},
+                                new SelectListItem{Value="Crecimiento", Text = "Crecimiento"},
+                                new SelectListItem{Value="Servicios", Text = "Servicios"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Sector, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Necesidad)
+                                    @Html.DropDownListFor(m => m.Necesidad, new List<SelectListItem> {
+                                new SelectListItem{Value="", Text = "Selecciona una opción"},
+                                new SelectListItem{Value="Registro de marca", Text = "Registro de marca"},
+                                new SelectListItem{Value="Diseño de imagen", Text = "Diseño de imagen"},
+                                new SelectListItem{Value="Cursos/conferencias", Text = "Cursos/conferencias"},
+                                new SelectListItem{Value="Talleres/capacitaciones", Text = "Talleres/capacitaciones"},
+                                new SelectListItem{Value="Vinculaciones con ecosistema emprendedor", Text = "Vinculaciones con ecosistema emprendedor"},
+                                new SelectListItem{Value="Financiamiento", Text = "Financiamiento"},
+                                new SelectListItem{Value="Interpretación de convocatorias de INADEM", Text = "Interpretación de convocatorias de INADEM"}
+                            }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Necesidad, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="visibility:hidden">
+                                    @Html.TextBoxFor(m => m.TituloEvento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align:center">
+                            <input type="submit" value="Enviar" class="btn btn-primary" />
+                            <a href="@Url.Action("Evento", "Catalogo", new { id = Model.idEvento })" class="btn btn-danger"><i class="icon-exclamation-sign icon-white"></i>&nbsp;Cancelar</a>
+                        </div>
+                    </section>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script>    
+    $(function () {
+        $('#FechaNacimiento').datepicker({
+            todayHighlight: 'TRUE',
+            autoclose: true
+        });
+    });
+</script>
+

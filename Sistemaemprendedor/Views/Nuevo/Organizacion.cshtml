@@ -1,0 +1,650 @@
+﻿@using Sistemaemprendedor.Models
+@model NuevaOrganizacionForm
+@{
+    ViewBag.Title = "Organizacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-11">
+        <h1>Mapeo organizaciones del ecosistema emprendedor</h1>
+        <p>Sé parte de los Consejos Regionales de la Red de Apoyo al Emprendedor del INADEM! únete al Ecosistema Emprendedor de HIDALGO.</p>
+        <a style="color:red">* Campo Obligatorio</a>
+        <br />
+        <br />
+        <h2>Datos de la organización</h2>
+        <br />
+        <section id="newOrganizationForm">
+            @using (Html.BeginForm("Organizacion", "Nuevo", FormMethod.Post, new { @class = "form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NombreOrg)                    
+                        @Html.TextBoxFor(m => m.NombreOrg, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.NombreOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CorreoOrg)                    
+                    @Html.TextBoxFor(m => m.CorreoOrg, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CorreoOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <br />
+                <p class="bg-info">Me interesa que dentro de mi organización llegue la información a otros colaboradores</p>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Correo2Org)                                        
+                    @Html.TextBoxFor(m => m.Correo2Org, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Correo2Org, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Correo3Org)                                        
+                    @Html.TextBoxFor(m => m.Correo3Org, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Correo3Org, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Correo4Org)                                        
+                    @Html.TextBoxFor(m => m.Correo4Org, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Correo4Org, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.RegionOrg)                    
+                    @Html.DropDownListFor(m => m.RegionOrg, new List<SelectListItem> {
+                        new SelectListItem{Value="0", Text = "Selecciona una región"},
+                        new SelectListItem{Value="Región Pachuca: Mineral De La Reforma  Pachuca de Soto San Agustín Tlaxiaca Mineral Del Monte Epazoyucan", Text = "Región Pachuca: Mineral De La Reforma  Pachuca de Soto San Agustín Tlaxiaca Mineral Del Monte Epazoyucan"},
+                        new SelectListItem{Value="Región Mixquiahuala: Actopan Francisco I. Madero Proceso El Arenal Mixquiahuala San Salvador Santiago de Anaya Ajacuba", Text = "Región Mixquiahuala: Actopan Francisco I. Madero Proceso El Arenal Mixquiahuala San Salvador Santiago de Anaya Ajacuba"},
+                        new SelectListItem{Value="Región Tulancingo Tulancingo de Bravo Santiago de Tulantepec Cuahutepec de Hinojosa Singuilucan", Text = "Región Tulancingo Tulancingo de Bravo Santiago de Tulantepec Cuahutepec de Hinojosa Singuilucan"},
+                        new SelectListItem{Value="Región Zimapán: Nicolas Flores Pacula Tasquillo Zimapán", Text = "Región Zimapán: Nicolas Flores Pacula Tasquillo Zimapán"},
+                        new SelectListItem{Value="Región Otomí Tepehua: Acaxochitlán Huehuetla San Bartolo Tutotepec Agua Blanca de Iturbide Metepec Tenango de Doria", Text = "Región Otomí Tepehua: Acaxochitlán Huehuetla San Bartolo Tutotepec Agua Blanca de Iturbide Metepec Tenango de Doria"},
+                        new SelectListItem{Value="Región Zacualtipán: Tianguistengo Xochicoatlán Zacualtipán de Angeles", Text = "Región Zacualtipán: Tianguistengo Xochicoatlán Zacualtipán de Angeles"},
+                        new SelectListItem{Value="Región Huichapan: Huichapan Chapantongo Nopala de Villagrán Tecozautla", Text = "Región Huichapan: Huichapan Chapantongo Nopala de Villagrán Tecozautla"},
+                        new SelectListItem{Value="Región Apan: Apan Almoloya Tlanalapa Tepeapulco Emiliano Zapata", Text = "Región Apan: Apan Almoloya Tlanalapa Tepeapulco Emiliano Zapata"},
+                        new SelectListItem{Value="Región Tula - Tepeji: Tula de Allende Tlahuelipan Tepeji del Río Tezontepec de Aldama Tepetitlan Tetepango Atotonilco de Tula Tlaxcuapan Atitalaquia", Text = "Región Tula - Tepeji: Tula de Allende Tlahuelipan Tepeji del Río Tezontepec de Aldama Tepetitlan Tetepango Atotonilco de Tula Tlaxcuapan Atitalaquia"},
+                        new SelectListItem{Value="Región Huejutla: Huejutla de Reyes Huautla  San Felipe Orizotlán Atlapexco Jaltocán Xochiatipan Yahualica", Text = "Región Huejutla: Huejutla de Reyes Huautla  San Felipe Orizotlán Atlapexco Jaltocán Xochiatipan Yahualica"},
+                        new SelectListItem{Value="Región Ixmilquilpán: Ixmiquilpan Cardonal Alfajayucan Chilcuautla", Text = "Región Ixmilquilpán: Ixmiquilpan Cardonal Alfajayucan Chilcuautla"},
+                        new SelectListItem{Value="Región Tizayuca Tizayuca Villa de Tezontepec Zempoala Tolcayuca Zapotlán de Juárez", Text = "Región Tizayuca Tizayuca Villa de Tezontepec Zempoala Tolcayuca Zapotlán de Juárez"},
+                        new SelectListItem{Value="Región Meztitlán: Eloxochitlán Juárez San Agustín Mezquititlán Meztitlán Tlahuitepa", Text = "Región Meztitlán: Eloxochitlán Juárez San Agustín Mezquititlán Meztitlán Tlahuitepa"},
+                        new SelectListItem{Value="Región IX Molango: Calnalli Lolotla Tepehuacán Huazalingo Molango de Escamilla Tlanchinol", Text = "Región IX Molango: Calnalli Lolotla Tepehuacán Huazalingo Molango de Escamilla Tlanchinol"},
+                        new SelectListItem{Value="Región Jacala: Chapulhuacán La Misión  Jacala de Ledezma Pisa Flores", Text = "Región Jacala: Chapulhuacán La Misión  Jacala de Ledezma Pisa Flores"},
+                        new SelectListItem{Value="Región Atotonilco: Acatlán Huasca De Ocampo Omitlán de Juárez Atotonilco El Grande Mineral del Chico", Text = "Región Atotonilco: Acatlán Huasca De Ocampo Omitlán de Juárez Atotonilco El Grande Mineral del Chico"}                        
+                    }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RegionOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OrganismoApoyoOrg)                    
+                    @Html.DropDownListFor(m => m.OrganismoApoyoOrg, new List<SelectListItem> {
+                        new SelectListItem{Value="0", Text = "Selecciona una organismo"},
+                        new SelectListItem{Value="Escuela", Text = "Escuela"},
+                        new SelectListItem{Value="Incubadora tradicional", Text = "Incubadora tradicional"},
+                        new SelectListItem{Value="Incubadora de alto impacto", Text = "Incubadora de alto impacto"},
+                        new SelectListItem{Value="Cámara Empresarial", Text = "Cámara Empresarial"},
+                        new SelectListItem{Value="CoWorking Space", Text = "CoWorking Space"},
+                        new SelectListItem{Value="Aceleradora", Text = "Aceleradora"},
+                        new SelectListItem{Value="Programa de Emprendimiento", Text = "Programa de Emprendimiento"},
+                        new SelectListItem{Value="Comunidades de Emprendimiento", Text = "Comunidades de Emprendimiento"},
+                        new SelectListItem{Value="Evento", Text = "Evento"},
+                        new SelectListItem{Value="Gobierno", Text = "Gobierno"},
+                        new SelectListItem{Value="Empresa", Text = "Empresa"},
+                        new SelectListItem{Value="Ninguno de los anteriores", Text = "Ninguno de los anteriores"}                        
+                    }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.OrganismoApoyoOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ReconocidoINADEMOrg)                    
+                    @Html.DropDownListFor(m => m.ReconocidoINADEMOrg, new List<SelectListItem> {                        
+                        new SelectListItem{Value="1", Text = "Si"},
+                        new SelectListItem{Value="0", Text = "No"}                       
+                    }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ReconocidoINADEMOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DescripcionOrg)                    
+                    @Html.TextAreaFor(m => m.DescripcionOrg, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.DescripcionOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApoyosEmprendedorOrg)                    
+                    <p>Productos se entiende como tangible para el emprendedor/empresario. Ejemplo: computadoras, tabletas, mobiliario, herramienta, maquinaria, etc. Servicios se refiere a una serie de trabajos profesionales que culminan con algún beneficio aplicable para el emprendedor/empresario. Ejemplo: asesorías, pagina web, diseños, imagen corporativa, contratos legales, video promocional, etc.</p>                    
+                    @Html.TextAreaFor(m => m.ApoyosEmprendedorOrg, new { @class = "col-md-pull-8 form-control" })
+                    @Html.ValidationMessageFor(m => m.ApoyosEmprendedorOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.TelefonoOrg)
+                    <p>Clave Lada + Número</p>                    
+                    @Html.TextBoxFor(m => m.TelefonoOrg, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.TelefonoOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.WebsiteOrg)                                        
+                    @Html.TextBoxFor(m => m.WebsiteOrg, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.WebsiteOrg, "", new { @class = "text-danger" })                    
+                </div>
+                <br />                
+                <h2>Datos del representante</h2>
+                <p>El representante son los lideres de la organización en temas de emprendimiento. Queremos estar en contacto con la persona que hace que las cosas pasen.</p>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NombreRep)
+                    @Html.TextBoxFor(m => m.NombreRep, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.NombreRep, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CorreoRep)
+                    @Html.TextBoxFor(m => m.CorreoRep, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CorreoRep, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.TelefonoRep)
+                    @Html.TextBoxFor(m => m.TelefonoRep, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.TelefonoRep, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LinkedInRep)
+                    @Html.TextBoxFor(m => m.LinkedInRep, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LinkedInRep, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <h2>Datos de mentores</h2>
+                <p>Registra aquí a los mentores de tu organización para sean parte de la RED DE MENTORES del INADEM - IHCE y puedan tener la oportunidad de certificarse ante estas instituciones.... SI TU ORGANIZACION NO CUENTA CON MENTORES DEJA LOS ESPACIOS EN BLANCO</p>
+                <br />
+                <div id="accordion">
+                    <h3>Mentor 1</h3>
+                    <div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NombreMent1)
+                            @Html.TextBoxFor(m => m.NombreMent1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NombreMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CorreoMent1)
+                            @Html.TextBoxFor(m => m.CorreoMent1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CorreoMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TelefonoMent1)
+                            @Html.TextBoxFor(m => m.TelefonoMent1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TelefonoMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LinkedInMent1)
+                            @Html.TextBoxFor(m => m.LinkedInMent1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LinkedInMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <h4>Mentorias especializadas:</h4>
+                        <p>Califica tu area de preferencia para dar mentoria. Siendo 1 el menor grado y 5 el grado maximo</p>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloNegocioMent1)
+                            @Html.DropDownListFor(m => m.DesarrolloNegocioMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloNegocioMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MercadotecniaMent1)
+                            @Html.DropDownListFor(m => m.MercadotecniaMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MercadotecniaMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloSoftwareMent1)
+                            @Html.DropDownListFor(m => m.DesarrolloSoftwareMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloSoftwareMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloHardwareMent1)
+                            @Html.DropDownListFor(m => m.DesarrolloHardwareMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloHardwareMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PitchMent1)
+                            @Html.DropDownListFor(m => m.PitchMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.PitchMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FinanzasMent1)
+                            @Html.DropDownListFor(m => m.FinanzasMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FinanzasMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ContabilidadMent1)
+                            @Html.DropDownListFor(m => m.ContabilidadMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ContabilidadMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ValidaciónMEnt1)
+                            @Html.DropDownListFor(m => m.ValidaciónMEnt1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ValidaciónMEnt1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MinimoVariableMent1)
+                            @Html.DropDownListFor(m => m.MinimoVariableMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MinimoVariableMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LegalMent1)
+                            @Html.DropDownListFor(m => m.LegalMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LegalMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StartupsMent1)
+                            @Html.DropDownListFor(m => m.StartupsMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.StartupsMent1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.AdministracionMent1)
+                            @Html.DropDownListFor(m => m.AdministracionMent1, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AdministracionMent1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <h3>Mentor 2</h3>
+                    <div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NombreMent2)
+                            @Html.TextBoxFor(m => m.NombreMent2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NombreMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CorreoMent2)
+                            @Html.TextBoxFor(m => m.CorreoMent2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CorreoMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TelefonoMent2)
+                            @Html.TextBoxFor(m => m.TelefonoMent2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TelefonoMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LinkedInMent2)
+                            @Html.TextBoxFor(m => m.LinkedInMent2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LinkedInMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <h4>Mentorias especializadas:</h4>
+                        <p>Califica tu area de preferencia para dar mentoria. Siendo 1 el menor grado y 5 el grado maximo</p>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloNegocioMent2)
+                            @Html.DropDownListFor(m => m.DesarrolloNegocioMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloNegocioMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MercadotecniaMent2)
+                            @Html.DropDownListFor(m => m.MercadotecniaMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MercadotecniaMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloSoftwareMent2)
+                            @Html.DropDownListFor(m => m.DesarrolloSoftwareMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloSoftwareMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloHardwareMent2)
+                            @Html.DropDownListFor(m => m.DesarrolloHardwareMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloHardwareMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PitchMent2)
+                            @Html.DropDownListFor(m => m.PitchMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.PitchMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FinanzasMent2)
+                            @Html.DropDownListFor(m => m.FinanzasMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FinanzasMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ContabilidadMent2)
+                            @Html.DropDownListFor(m => m.ContabilidadMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ContabilidadMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ValidaciónMEnt2)
+                            @Html.DropDownListFor(m => m.ValidaciónMEnt2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ValidaciónMEnt2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MinimoVariableMent2)
+                            @Html.DropDownListFor(m => m.MinimoVariableMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MinimoVariableMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LegalMent2)
+                            @Html.DropDownListFor(m => m.LegalMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LegalMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StartupsMent2)
+                            @Html.DropDownListFor(m => m.StartupsMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.StartupsMent2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.AdministracionMent2)
+                            @Html.DropDownListFor(m => m.AdministracionMent2, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AdministracionMent2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <h3>Mentor 3</h3>
+                    <div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NombreMent3)
+                            @Html.TextBoxFor(m => m.NombreMent3, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NombreMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CorreoMent3)
+                            @Html.TextBoxFor(m => m.CorreoMent3, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CorreoMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TelefonoMent3)
+                            @Html.TextBoxFor(m => m.TelefonoMent3, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TelefonoMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LinkedInMent3)
+                            @Html.TextBoxFor(m => m.LinkedInMent3, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LinkedInMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <h4>Mentorias especializadas:</h4>
+                        <p>Califica tu area de preferencia para dar mentoria. Siendo 1 el menor grado y 5 el grado maximo</p>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloNegocioMent3)
+                            @Html.DropDownListFor(m => m.DesarrolloNegocioMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloNegocioMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MercadotecniaMent3)
+                            @Html.DropDownListFor(m => m.MercadotecniaMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MercadotecniaMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloSoftwareMent3)
+                            @Html.DropDownListFor(m => m.DesarrolloSoftwareMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloSoftwareMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DesarrolloHardwareMent3)
+                            @Html.DropDownListFor(m => m.DesarrolloHardwareMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.DesarrolloHardwareMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PitchMent3)
+                            @Html.DropDownListFor(m => m.PitchMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.PitchMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FinanzasMent3)
+                            @Html.DropDownListFor(m => m.FinanzasMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FinanzasMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ContabilidadMent3)
+                            @Html.DropDownListFor(m => m.ContabilidadMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ContabilidadMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ValidaciónMEnt3)
+                            @Html.DropDownListFor(m => m.ValidaciónMEnt3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ValidaciónMEnt3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MinimoVariableMent3)
+                            @Html.DropDownListFor(m => m.MinimoVariableMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MinimoVariableMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LegalMent3)
+                            @Html.DropDownListFor(m => m.LegalMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LegalMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StartupsMent3)
+                            @Html.DropDownListFor(m => m.StartupsMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.StartupsMent3, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.AdministracionMent3)
+                            @Html.DropDownListFor(m => m.AdministracionMent3, new List<SelectListItem> {
+                                new SelectListItem{Value="1", Text = "1"},
+                                new SelectListItem{Value="2", Text = "2"},
+                                new SelectListItem{Value="3", Text = "3"},
+                                new SelectListItem{Value="4", Text = "4"},
+                                new SelectListItem{Value="5", Text = "5"}
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AdministracionMent3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input">
+                            Acepto lo terminos de privacidad
+                        </label>
+                    </div>   
+                </div>                             
+                    <div class="form-group">                        
+                            <input type="submit" value="Enviar" class="btn btn-primary" />                       
+                    </div>
+                    }
+</section>
+    </div>
+</div>
+<script>
+$( function() {
+    $("#accordion").accordion({
+        active: 6,
+        collapsible: true
+    });
+});
+</script>

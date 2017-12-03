@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Entrada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("Index", "Blog")">Blog</a></li>
+                <li class="tg-active">Entrada</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--************************************
+                Grid Start
+        *************************************-->
+<div class="tg-sectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+
+            <div id="tg-twocolumns" class="tg-twocolumns">
+                <div class="col-xs-12 col-sm-offset-2 col-md-8 col-lg-9">
+                    <div id="tg-content" class="tg-content">
+                        <div class="tg-newsdetail">
+                            <div class="tg-detailtitle">
+                                <div class="tg-leftarea">
+                                    <h3>Titulo del Articulo</h3>
+                                    <ul class="tg-postmatadata">
+                                        <li><a href="javascript:void(0);"><i class="icon-user"></i><span>Nombre del Autor</span></a></li>
+                                        <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><span>5234</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <article class="tg-themepost">
+                                <figure class="tg-themepostimg">
+                                    <time class="tg-time" datetime="2017-01-01">21 June</time>
+                                    <img src="~/Content/Images/demo/blog1.jpg" />                                    
+                                </figure>
+                                <div class="tg-detailbox">
+                                    <div class="tg-boxtitle">
+                                        <h3>Descripción del Articulo</h3>
+                                    </div>
+                                    <div class="tg-description">
+                                        <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit inoluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia desunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus.</p>                                        
+                                        <p>Voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                    </div>
+                                </div>
+                                <div class="tg-tagsshare">
+                                    <div class="tg-tags">
+                                        <span>Compartir:</span>
+                                        <ul class="tg-socialicons">
+                                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>                                            
+                                        </ul>
+                                    </div>
+                                    <div class="tg-socialshare">
+                                        
+                                    </div>
+                                </div>
+                            </article>                            
+                            <div class="tg-detailbox">
+                                <div class="tg-boxtitle">
+                                    <h3>2 Comentarios</h3>
+                                </div>
+                                <ul id="tg-comments" class="tg-comments">
+                                    <li>
+                                        <div class="tg-author">                                            
+                                            <div class="tg-authorcontent">
+                                                <div class="tg-authorhead">
+                                                    <div class="tg-authorname">
+                                                        <h2>Roselee Heminger</h2>
+                                                        <time class="tg-eventdatetime" datetime="2011-01-10"><i class="icon-clock"></i>Author Since 2016</time>
+                                                    </div>                                                    
+                                                </div>
+                                                <div class="tg-description">
+                                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sedait quiano numquam eius modi tempora incidunt ut labore et dolore magnam.</p>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </li>
+                                    <li>
+                                        <div class="tg-author">                                           
+                                            <div class="tg-authorcontent">
+                                                <div class="tg-authorhead">
+                                                    <div class="tg-authorname">
+                                                        <h2>Roselee Heminger</h2>
+                                                        <time class="tg-eventdatetime" datetime="2011-01-10"><i class="icon-clock"></i>Author Since 2016</time>
+                                                    </div>                                                    
+                                                </div>
+                                                <div class="tg-description">
+                                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sedait quiano numquam eius modi tempora incidunt ut labore et dolore magnam.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tg-detailbox">
+                                <div class="tg-boxtitle">
+                                    <h3>Dejanos tu comentario</h3>
+                                </div>
+                                <form class="tg-formtheme tg-formleavecomments">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="first-name" class="form-control" placeholder="Nombre">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="last-name" class="form-control" placeholder="Apellido">
+                                                </div>
+                                            </div>                                            
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <textarea placeholder="Comentario"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <button type="submit" class="tg-btn">Comentar</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+<!--************************************
+        Grid End
+*************************************-->
+
+
