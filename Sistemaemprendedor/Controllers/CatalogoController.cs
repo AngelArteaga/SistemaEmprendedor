@@ -17,6 +17,35 @@ namespace Sistemaemprendedor.Controllers
 {
     public class CatalogoController : Controller
     {
+        //Ecosistema
+        public ActionResult Ecosistema(int region)
+        {
+            if (region == 14)
+            {
+                region = 3;
+            }
+            EcosistemaModelo modelo = new EcosistemaModelo();
+            modelo.Region = modelo.RegionSch(region);
+            modelo.Organizaciones = modelo.OrganizacionesSch(region);
+            return View(modelo);
+        }
+        //Infografia
+        public ActionResult Infografia(int region)
+        {
+            if (region == 14)
+            {
+                region = 3;
+            }
+            EcosistemaModelo modelo = new EcosistemaModelo();
+            modelo.Region = modelo.RegionSch(region);            
+            return View(modelo);
+        }
+        //MapaVocaciones
+        public ActionResult MapaVocaciones()
+        {           
+            return View();
+        }
+        
         // GET: Catalogo
         public ActionResult Index(HttpPostedFileBase file)
         {
@@ -62,13 +91,39 @@ namespace Sistemaemprendedor.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult EditarEvento (int id)
+        {
+            //Crea conexión a base de datos
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            EditarEventoForm model = new EditarEventoForm();
+            Evento EventoEditable = new Evento();
+            EventoEditable = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+            //Llena datos del evento                                   
+            model.Nombre = EventoEditable.Nombre;
+            model.Descripcion = EventoEditable.Descripcion;
+            model.tipoEvento = EventoEditable.idTipoEvento;
+            model.Estado = EventoEditable.Estado;
+            model.Municipio = EventoEditable.Municipio;
+            model.CodigoPostal = EventoEditable.Cp;
+            model.Calle = EventoEditable.Calle;
+            model.FechaEvento = EventoEditable.FechaEvento;
+            model.HoraInicio = EventoEditable.HoraInicio;
+            model.Organizador = EventoEditable.Organizador;
+            model.Email = EventoEditable.Email;
+            model.Telefono = EventoEditable.Telefono;
+            model.Website = EventoEditable.WebPage;
+            model.Image = EventoEditable.url;
+            return View(model);
+        }
+
         // GET: Eventos
         public ActionResult Eventos()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             CatalogoModelo modelo = new CatalogoModelo();
             modelo.ListaDeTiposEvento = bd.TipoEvento.Select(x => x).ToList();
-            modelo.ListaDeEventos = bd.Evento.Select(x => x).ToList(); 
+            modelo.ListaDeEventos = bd.Evento.Where(x=>x.estatus == 2).Select(x => x).ToList(); 
             string RegionName = System.Web.HttpContext.Current.Session["RegionString"] as String;
             return View(modelo);
         }
@@ -115,15 +170,16 @@ namespace Sistemaemprendedor.Controllers
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             CatalogoModelo modelo = new CatalogoModelo();
-            //modelo.ListaDeEmpresas = bd.Organizacion.Select(x => x).ToList();
+            modelo.ListaDeEmpresas = bd.Organizacion.Select(x => x).Where(x => x.IdRegion != null).ToList();
+            modelo.ListaDeRegiones = bd.Regiones.Select(x => x).ToList();
             return View(modelo);
         }
-        public ActionResult Organizacion()
+        public ActionResult Organizacion(int id)
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             CatalogoModelo modelo = new CatalogoModelo();
-            //modelo.ListaDeEmpresas = bd.Organizacion.Select(x => x).ToList();
-            return View();
+            modelo.Empresa = bd.Organizacion.Select(x => x).Where(x => x.id == id).FirstOrDefault();
+            return View(modelo);
         }
 
         // GET: Emprendedores
@@ -141,6 +197,13 @@ namespace Sistemaemprendedor.Controllers
             CatalogoModelo modelo = new CatalogoModelo();
             //modelo.ListaDeEmprendedores = bd.Emprendedor.Select(x => x).ToList();
             return View();
+        }
+
+        public ActionResult Busqueda(string TextSearch)
+        {
+            CatalogoModelo model = new CatalogoModelo();
+            model.textSearch = TextSearch;            
+            return View(model);
         }
     }
 }

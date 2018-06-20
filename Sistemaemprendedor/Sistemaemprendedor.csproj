@@ -294,6 +294,12 @@
     <Content Include="Content\bootstrap-material-datetimepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calendar\calendar.css" />
+    <Content Include="Content\calendar\calendar.js" />
+    <Content Include="Content\calendar\calendar.min.css" />
+    <Content Include="Content\calendar\calendar.min.js" />
+    <Content Include="Content\calendar\jquery.min.js" />
+    <Content Include="Content\calendar\underscore-min.js" />
     <Content Include="Content\DataTables\Buttons-1.4.2\css\buttons.bootstrap.css" />
     <Content Include="Content\DataTables\Buttons-1.4.2\css\buttons.bootstrap.min.css" />
     <Content Include="Content\DataTables\Buttons-1.4.2\css\buttons.bootstrap4.css" />
@@ -326,6 +332,9 @@
     <Content Include="Content\DataTables\Buttons-1.4.2\js\buttons.semanticui.min.js" />
     <Content Include="Content\DataTables\Buttons-1.4.2\js\dataTables.buttons.js" />
     <Content Include="Content\DataTables\Buttons-1.4.2\js\dataTables.buttons.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.4.2\js\jszip.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.4.2\js\pdfmake.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.4.2\js\vfs_fonts.js" />
     <Content Include="Content\DataTables\Buttons-1.4.2\swf\flashExport.swf" />
     <Content Include="Content\DataTables\DataTables-1.10.16\css\dataTables.bootstrap.css" />
     <Content Include="Content\DataTables\DataTables-1.10.16\css\dataTables.bootstrap.min.css" />
@@ -377,10 +386,12 @@
     <Content Include="Content\Images\demo\Event2.jpg" />
     <Content Include="Content\Images\demo\Event3.jpg" />
     <Content Include="Content\Images\demo\Event4.jpg" />
+    <Content Include="Content\Images\demo\EventBig.jpg" />
     <Content Include="Content\Images\demo\flip1.jpg" />
     <Content Include="Content\Images\demo\flip2.jpg" />
     <Content Include="Content\Images\demo\flip3.jpg" />
     <Content Include="Content\Images\demo\flip4.jpg" />
+    <Content Include="Content\Images\demo\no-disponible.png" />
     <Content Include="Content\Images\demo\org1.png" />
     <Content Include="Content\Images\demo\org2.png" />
     <Content Include="Content\Images\demo\org3.png" />
@@ -401,6 +412,22 @@
     <Content Include="Content\Images\public\portada-04.png" />
     <Content Include="Content\Images\public\presidente.png" />
     <Content Include="Content\Images\public\secretario.png" />
+    <Content Include="Content\Images\Regiones\r1.png" />
+    <Content Include="Content\Images\Regiones\r10.png" />
+    <Content Include="Content\Images\Regiones\r11.png" />
+    <Content Include="Content\Images\Regiones\r12.png" />
+    <Content Include="Content\Images\Regiones\r13.png" />
+    <Content Include="Content\Images\Regiones\r14.png" />
+    <Content Include="Content\Images\Regiones\r15.png" />
+    <Content Include="Content\Images\Regiones\r16.png" />
+    <Content Include="Content\Images\Regiones\r2.png" />
+    <Content Include="Content\Images\Regiones\r3.png" />
+    <Content Include="Content\Images\Regiones\r4.png" />
+    <Content Include="Content\Images\Regiones\r5.png" />
+    <Content Include="Content\Images\Regiones\r6.png" />
+    <Content Include="Content\Images\Regiones\r7.png" />
+    <Content Include="Content\Images\Regiones\r8.png" />
+    <Content Include="Content\Images\Regiones\r9.png" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\JQueryUI\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\JQueryUI\images\ui-icons_555555_256x240.png" />
@@ -742,6 +769,7 @@
     <Content Include="Content\Template\js\jquery.vide.min.js" />
     <Content Include="Content\Template\js\kinetic.js" />
     <Content Include="Content\Template\js\main.js" />
+    <Content Include="Content\Template\js\maplace.js" />
     <Content Include="Content\Template\js\owl.carousel.min.js" />
     <Content Include="Content\Template\js\plugins.js" />
     <Content Include="Content\Template\js\pogoslider.js" />
@@ -849,7 +877,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Indexv3.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -877,7 +905,7 @@
     <Content Include="Views\Catalogo\Emprendedores.cshtml" />
     <Content Include="Views\Nuevo\Evento.cshtml" />
     <Content Include="Views\Nuevo\Organizacion.cshtml" />
-    <Content Include="Views\Home\IndexV2.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Catalogo\Evento.cshtml" />
     <Content Include="Views\Catalogo\Organizacion.cshtml" />
     <Content Include="Views\Catalogo\Emprendedor.cshtml" />
@@ -890,6 +918,11 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Resultado.cshtml" />
     <Content Include="Views\Nuevo\RegistroEvento.cshtml" />
+    <Content Include="Views\Manage\AsistentesEvento.cshtml" />
+    <Content Include="Views\Catalogo\EditarEvento.cshtml" />
+    <Content Include="Views\Catalogo\Ecosistema.cshtml" />
+    <Content Include="Views\Catalogo\Infografia.cshtml" />
+    <Content Include="Views\Catalogo\MapaVocaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

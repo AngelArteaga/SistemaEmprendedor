@@ -120,8 +120,7 @@ namespace Sistemaemprendedor.Models
         [Display(Name = "Apellido Materno:")]
         public string ApellidoMat { get; set; }
 
-
-        [DataType(DataType.Date)]
+        
         [Display(Name = "Fecha de Nacimiento:")]
         public DateTime FechaNacimiento { get; set; }
 

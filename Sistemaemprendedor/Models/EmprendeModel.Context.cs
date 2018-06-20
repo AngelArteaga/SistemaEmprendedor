@@ -27,13 +27,13 @@ namespace Sistemaemprendedor.Models
     
         public virtual DbSet<Emprendedor> Emprendedor { get; set; }
         public virtual DbSet<Mentores> Mentores { get; set; }
-        public virtual DbSet<Organizacion> Organizacion { get; set; }
         public virtual DbSet<ProgramaEmpresa> ProgramaEmpresa { get; set; }
-        public virtual DbSet<Regiones> Regiones { get; set; }
         public virtual DbSet<Representante> Representante { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<RegistroAEvento> RegistroAEvento { get; set; }
         public virtual DbSet<TipoEvento> TipoEvento { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
+        public virtual DbSet<RegistroAEvento> RegistroAEvento { get; set; }
+        public virtual DbSet<Organizacion> Organizacion { get; set; }
+        public virtual DbSet<Regiones> Regiones { get; set; }
     }
 }

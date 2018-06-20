@@ -2,6 +2,26 @@
     ViewBag.Title = "Home Page";
 }
 
+<style type="text/css">
+  .mobileShow {display: none;}
+   /* Smartphone show content */
+  @@media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px){
+      .mobileShow {display: inline;}      
+  }
+</style>
+<style type="text/css">
+  .mobileHide { display: inline; }
+
+  /* Smartphone hide content */
+  @@media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px){
+     .mobileHide { display: none;}
+  }
+</style>
+
 <!--************************************
                 Inner Banner Start
         *************************************-->
@@ -11,771 +31,78 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="tg-pageheading">
-                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>                       
-                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span>
-                            <select id="listaMunicipios" style="font-size:14px">
-                                <option value="">Selecciona tu municipio</option>
-                                <option value="Acatlan">Acatlan</option>
-
-                                <option value="Acaxochitlan">Acaxochitlan</option>
-
-                                <option value="Actopan">Actopan</option>
-
-                                <option value="Agua Blanca de Iturbide">Agua Blanca de Iturbide</option>
-
-                                <option value="Ajacuba">Ajacuba</option>
-
-                                <option value="Alfajayucan">Alfajayucan</option>
-
-                                <option value="Almoloya">Almoloya</option>
-
-                                <option value="Apan">Apan</option>
-
-                                <option value="El Arenal">El Arenal</option>
-
-                                <option value="Atitalaquia">Atitalaquia</option>
-
-                                <option value="Atlapexco">Atlapexco</option>
-
-                                <option value="Atotonilco el Grande">Atotonilco el Grande</option>
-
-                                <option value="Atotonilco de Tula">Atotonilco de Tula</option>
-
-                                <option value="Calnali">Calnali</option>
-
-                                <option value="Cardonal">Cardonal</option>
-
-                                <option value="Cuautepec de Hinojosa">Cuautepec de Hinojosa</option>
-
-                                <option value="Chapantongo">Chapantongo</option>
-
-                                <option value="Chapulhuacan">Chapulhuacan</option>
-
-                                <option value="Chilcuautla">Chilcuautla</option>
-
-                                <option value="Eloxochitlan">Eloxochitlan</option>
-
-                                <option value="Emiliano Zapata">Emiliano Zapata</option>
-
-                                <option value="Epazoyucan">Epazoyucan</option>
-
-                                <option value="Francisco I. Madero">Francisco I. Madero</option>
-
-                                <option value="Huasca de Ocampo">Huasca de Ocampo</option>
-
-                                <option value="Huautla">Huautla</option>
-
-                                <option value="Huazalingo">Huazalingo</option>
-
-                                <option value="Huehuetla">Huehuetla</option>
-
-                                <option value="Huejutla de Reyes">Huejutla de Reyes</option>
-
-                                <option value="Huichapan">Huichapan</option>
-
-                                <option value="Ixmiquilpan">Ixmiquilpan</option>
-
-                                <option value="Jacala de Ledezma">Jacala de Ledezma</option>
-
-                                <option value="Jaltocan">Jaltocan</option>
-
-                                <option value="Juarez Hidalgo">Juarez Hidalgo</option>
-
-                                <option value="Lolotla">Lolotla</option>
-
-                                <option value="Metepec">Metepec</option>
-
-                                <option value="San Agustin Metzquititlan">San Agustin Metzquititlan</option>
-
-                                <option value="Metztitlan">Metztitlan</option>
-
-                                <option value="Mineral del Chico">Mineral del Chico</option>
-
-                                <option value="Mineral del Monte">Mineral del Monte</option>
-
-                                <option value="La Mision">La Mision</option>
-
-                                <option value="Mixquiahuala de Juarez">Mixquiahuala de Juarez</option>
-
-                                <option value="Molango de Escamilla">Molango de Escamilla</option>
-
-                                <option value="Nicolas Flores">Nicolas Flores</option>
-
-                                <option value="Nopala de Villagran">Nopala de Villagran</option>
-
-                                <option value="Omitlan de Juarez">Omitlan de Juarez</option>
-
-                                <option value="San Felipe Orizatlan">San Felipe Orizatlan</option>
-
-                                <option value="Pacula">Pacula</option>
-
-                                <option value="Pachuca de Soto">Pachuca de Soto</option>
-
-                                <option value="Pisaflores">Pisaflores</option>
-
-                                <option value="Progreso de Obregon">Progreso de Obregon</option>
-
-                                <option value="Mineral de la Reforma">Mineral de la Reforma</option>
-
-                                <option value="San Agustin Tlaxiaca">San Agustin Tlaxiaca</option>
-
-                                <option value="San Bartolo Tutotepec">San Bartolo Tutotepec</option>
-
-                                <option value="San Salvador">San Salvador</option>
-
-                                <option value="Santiago de Anaya">Santiago de Anaya</option>
-
-                                <option value="Santiago Tulantepec de Lugo Guerrero">Santiago Tulantepec de Lugo Guerrero</option>
-
-                                <option value="Singuilucan">Singuilucan</option>
-
-                                <option value="Tasquillo">Tasquillo</option>
-
-                                <option value="Tecozautla">Tecozautla</option>
-
-                                <option value="Tenango de Doria">Tenango de Doria</option>
-
-                                <option value="Tepeapulco">Tepeapulco</option>
-
-                                <option value="Tepehuacan de Guerrero">Tepehuacan de Guerrero</option>
-
-                                <option value="Tepeji del Rio de Ocampo">Tepeji del Rio de Ocampo</option>
-
-                                <option value="Tepetitlan">Tepetitlan</option>
-
-                                <option value="Tetepango">Tetepango</option>
-
-                                <option value="Villa de Tezontepec">Villa de Tezontepec</option>
-
-                                <option value="Tezontepec de Aldama">Tezontepec de Aldama</option>
-
-                                <option value="Tianguistengo">Tianguistengo</option>
-
-                                <option value="Tizayuca">Tizayuca</option>
-
-                                <option value="Tlahuelilpan">Tlahuelilpan</option>
-
-                                <option value="Tlahuiltepa">Tlahuiltepa</option>
-
-                                <option value="Tlanalapa">Tlanalapa</option>
-
-                                <option value="Tlanchinol">Tlanchinol</option>
-
-                                <option value="Tlaxcoapan">Tlaxcoapan</option>
-
-                                <option value="Tolcayuca">Tolcayuca</option>
-
-                                <option value="Tula de Allende">Tula de Allende</option>
-
-                                <option value="Tulancingo de Bravo">Tulancingo de Bravo</option>
-
-                                <option value="Xochiatipan">Xochiatipan</option>
-
-                                <option value="Xochicoatlan">Xochicoatlan</option>
-
-                                <option value="Yahualica">Yahualica</option>
-
-                                <option value="Zacualtipan de Angeles">Zacualtipan de Angeles</option>
-
-                                <option value="Zapotlan de Juarez">Zapotlan de Juarez</option>
-
-                                <option value="Zempoala">Zempoala</option>
-
-                                <option value="Zimapan">Zimapan</option>
-                            </select></h2>                                                                                                                           
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">
+                            E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span>                            
+                        </h2>                                             
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="clearfix"></div>    
+    <div class="clearfix"></div>
 </div>
 <!--************************************
         Inner Banner End
 *************************************-->
+<section class="tg-Minisectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-sectionhead">
+                    <div class="tg-sectiontitles">
+                        <h2>¿Conoces tu ecosistema emprendedor?</h2>
+                        <h3>Listado de Regiones</h3>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</section>
 <!--************************************
                     Events Start
             *************************************-->
-<section class="tg-sectionspace tg-haslayout">
+<section class="tg-haslayout">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
-                <div class="tg-sectionhead">
-                    <div class="tg-sectiontitles">
-                        <h2>Eventos</h2>
-                        <h3>Events From Professionals</h3>
+        <div class="row">            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                <div class="mobileHide" style="width: 100%;">
+                    <div style="width: 100%;">
+                        <div style="position: relative; padding-bottom: 77.11%; padding-top: 0; height: 0;">
+                            <iframe frameborder="0" width="1573" height="1213" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genial.ly/5ae38f7a7570e525eb0188ee" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe>
+                        </div>
                     </div>
-                    <div class="tg-description">
-                        <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quisatrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute.</p>
+                </div>
+                <div class="tg-shortcode tg-trusted mobileShow">
+                    <div class="tg-trustedclients">
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r1.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r2.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r3.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r4.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r5.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r6.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r7.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r8.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r9.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r10.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r11.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r12.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r13.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r14.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r15.png" /></a></figure>
+                        <figure><a href="javascript:void(0);"><img style="max-height:130px" src="~/Content/Images/Regiones/r16.png" /></a></figure>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="tg-eventslider" class="tg-eventslider tg-eventgrid-vtwo owl-carousel">
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event1.jpg" alt="image description"></a>                            
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div id="tg-upcomingeventcounter" class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                            
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event2.jpg" alt="image description"></a>
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                            
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event3.jpg" alt="image description"></a>
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                           
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event4.jpg" alt="image description"></a>
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                           
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event2.jpg" alt="image description"></a>
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                           
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="item tg-themepost tg-event">
-                        <figure class="tg-themepostimg">
-                            <a href="javascript:void(0);"><img src="~/Content/Images/demo/Event1.jpg" alt="image description"></a>
-                            <span class="tg-themepostlabel">Categoría</span>
-                            <div class="tg-counterandbtn">
-                                <div class="tg-counterandbtnholder">
-                                    <div class="tg-upcomingeventcounter">
-                                        <div class="tg-eventcounter"><span>217</span><span>D</span></div>
-                                        <div class="tg-eventcounter"><span>06</span><span>H</span></div>
-                                        <div class="tg-eventcounter"><span>25</span><span>M</span></div>
-                                        <div class="tg-eventcounter"><span>02</span><span>S</span></div>
-                                    </div>
-                                    <i class="tg-upcomingeventbtn icon-calendar-full"></i>
-                                </div>
-                            </div>
-                        </figure>
-                        <div class="tg-themepostcontent">
-                            
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Life is About Race Against Time</a></h3>
-                            </div>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">Add To Calendar</a>
-                            <a class="tg-btnreadmore" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
-                        </div>
-                    </div>                                       
-                </div>                
-            </div>                     
-        </div>        
+        </div>
     </div>
-      
+
 </section>
 <!--************************************
         Events End
 *************************************-->
-<!--************************************
-                    Our Experts Start
-            *************************************-->
-<section class="tg-sectionspace tg-haslayout">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
-                <div class="tg-sectionhead">
-                    <div class="tg-sectiontitles">
-                        <h2>Emprendedores</h2>
-                        <h3>Meet Our Professional Team</h3>
-                    </div>
-                    <div class="tg-description">
-                        <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quisatrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute.</p>
-                    </div>
-                </div>
-            </div>
-            <div id="tg-expertsslider" class="tg-experts tg-expertsslider owl-carousel">
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Accounting</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Marquetta Tapscott</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Business Marketing</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Emerson Perrotti</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Business Support</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr4.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Account Executives</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Lemuel Dauphinais</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Auditing Clerk</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Marquetta Tapscott</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Business Management</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Emerson Perrotti</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Accountant</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr4.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Customer support</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Lemuel Dauphinais</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>
-                <div class="item tg-themepost tg-expertpost">
-                    <figure class="tg-themepostimg"><a href="javascript:void(0);"><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></a></figure>
-                    <div class="tg-themepostcontent">
-                        <span class="tg-category"><a href="javascript:void(0);">Education Program</a></span>
-                        <div class="tg-themeposttitle">
-                            <h3><a href="javascript:void(0);">Maribel Whiteford</a></h3>
-                        </div>
-                        <ul class="tg-contactinfo">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <span>+4 1234 5678 - 9</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <span><a href="mailto:name@domain.com">name@domain.com</a></span>
-                            </li>
-                        </ul>
-                        <ul class="tg-socialicons">
-                            <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                            <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                            <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                        <a class="tg-btnreadmore" href="javascript:void(0);">view profile</a>
-                    </div>
-                </div>                
-            </div>
-        </div>
-    </div>
-</section>
-<!--************************************
-        Our Experts End
-*************************************-->
 
-<!--************************************
-                    Organizaciones
-            *************************************-->
-<section class="tg-sectionspace tg-haslayout">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="tg-sectionhead">
-                    <div class="tg-sectiontitles">
-                        <h2>Organizaciones</h2>
-                        <h3>Organizaciones</h3>
-                    </div>
-                    <div class="tg-description">
-                        <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quisatrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute.</p>
-                    </div>
-                </div>
-                <div class="tg-shortcode tg-trusted">                    
-                    <div class="tg-trustedclients">
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org1.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org2.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org3.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org4.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org5.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org6.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org7.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org8.png" alt="image description"></a></figure>
-                        <figure><a href="javascript:void(0);"><img src="~/Content/Images/demo/org9.png" alt="image description"></a></figure>
-                    </div>
-                    <a class="tg-btn" href="javascript:void(0);">Ver todas</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--************************************
-        Organizaciones
-*************************************-->
-<!--************************************
-                    News And Signup Start
-            *************************************-->
-<section class="tg-sectionspace tg-haslayout">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="tg-title">
-                    <h2>Ultimas entradas del Blog</h2>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                <div class="tg-newsarticles">
-                    <article class="tg-themepost tg-postleftimg tg-newsarticle">
-                        <figure class="tg-themepostimg">
-                            <time class="tg-time" datetime="2017-01-01">21 June</time>
-                            <img src="~/Content/Images/demo/blog1.jpg" />
-                        </figure>
-                        <div class="tg-themepostcontent">
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Titulo entrada más reciente</a></h3>
-                            </div>
-                            <ul class="tg-postmatadata">
-                                <li><a href="javascript:void(0);"><i class="icon-user"></i><span>Autor de la entrada</span></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><span>5</span></a></li>
-                            </ul>
-                            <div class="tg-description">
-                                <p>Descripción: Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">leer más...</a>
-                        </div>
-                    </article>
-                    <article class="tg-themepost tg-postleftimg tg-newsarticle">
-                        <figure class="tg-themepostimg">
-                            <time class="tg-time" datetime="2017-01-01">16 September</time>                            
-                            <img src="~/Content/Images/demo/blog2.jpg" />
-                        </figure>
-                        <div class="tg-themepostcontent">
-                            <div class="tg-themeposttitle">
-                                <h3><a href="javascript:void(0);">Titulo segunda entrada</a></h3>
-                            </div>
-                            <ul class="tg-postmatadata">
-                                <li><a href="javascript:void(0);"><i class="icon-user"></i><span>Nombre del autor</span></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><span>8</span></a></li>
-                            </ul>
-                            <div class="tg-description">
-                                <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua.</p>
-                            </div>
-                            <a class="tg-btnreadmore" href="javascript:void(0);">leer más...</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="tg-newsletter">
-                    <div class="tg-newsltterholder">
-                        <i class="icon-bookmark"></i>
-                        <h3>Subscribete a nuestro boletín!</h3>
-                        <div class="tg-description">
-                            <p>Consectetur adipisicing eliosmod tem aporat incididunt tore dolore magn aliqua minimal veniam nostrud exeatation ullamco laboris nisi aliquip commodo.</p>
-                        </div>
-                        <form class="tg-formtheme tg-formnesletter">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input type="text" name="yourname" class="form-control" placeholder="Nombre">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email">
-                                </div>
-                                <button type="submit" class="tg-btn">Subscribir</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--************************************
-        News And Signup End
-*************************************-->
+
 
 <script>
     $(document).ready(function () {
@@ -785,7 +112,7 @@
         // Post the value to your server. You should do some error handling here
         $.post("/Home/SetRegion", {
             mun: m
-        });           
+        });
     });
     });
 </script>

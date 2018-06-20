@@ -9,7 +9,7 @@ using Microsoft.Owin.Security;
 using Sistemaemprendedor.Models;
 
 namespace Sistemaemprendedor.Controllers
-{
+{    
     [Authorize]
     public class ManageController : Controller
     {
@@ -18,6 +18,120 @@ namespace Sistemaemprendedor.Controllers
 
         public ManageController()
         {
+        }
+
+        // Eliminar
+        public ActionResult Eliminar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            ManageCatalogo model = new ManageCatalogo();
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoBorrar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoBorrar!= null)
+                {
+                    try {
+                        model.ListaAsistentesDeEventos = bd.RegistroAEvento.Where(x => x.IdEvento == id).Select(x => x).ToList();
+                        if (model.ListaAsistentesDeEventos != null)
+                        {
+                            foreach (var Asistente in model.ListaAsistentesDeEventos){
+                                bd.Entry(Asistente).State = System.Data.Entity.EntityState.Deleted;
+                                bd.SaveChanges();
+                            }
+                        }
+                        bd.Entry(EventoBorrar).State = System.Data.Entity.EntityState.Deleted;
+                        bd.SaveChanges();
+                    }
+                    catch(Exception ex) {
+                        msg = "Existe un problema al eliminar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);                               
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento eliminado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);                    
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Activar
+        public ActionResult Activar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoActivar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoActivar != null)
+                {
+                    try
+                    {
+                        EventoActivar.estatus = 2;
+                        bd.Entry(EventoActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al activar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento activado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Desactivar
+        public ActionResult Desactivar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoActivar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoActivar != null)
+                {
+                    try
+                    {
+                        EventoActivar.estatus = 3;
+                        bd.Entry(EventoActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al desactivar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento desactivado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -30,12 +144,28 @@ namespace Sistemaemprendedor.Controllers
             return View(Users);
         }
 
+        //
+        // GET: /Lista de asistentes
+        public ActionResult AsistentesEvento(int idEvento)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ManageCatalogo model = new ManageCatalogo();
+            model.ListaAsistentesDeEventos = bd.RegistroAEvento.Where(x => x.IdEvento == idEvento).Select(x => x).ToList();
+            model.Evento = bd.Evento.Where(x => x.id == idEvento).Select(x => x).FirstOrDefault();
+            return View(model);
+        }
+
         // GET: /Admin eventos
         public ActionResult AdministrarEventos()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             ManageCatalogo Manage = new ManageCatalogo();
-            Manage.ListaEventos = bd.Evento.ToList();
+            string ar = null;
+            Manage.ListaEventos = bd.Evento.ToList();            
+            if (TempData["Message"] != null)
+            {
+                ViewBag.ActionResponses = TempData["Message"];
+            }            
             return View(Manage);
         }
 

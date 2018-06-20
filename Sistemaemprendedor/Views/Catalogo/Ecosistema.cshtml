@@ -1,0 +1,190 @@
+﻿@using Sistemaemprendedor.Models
+@model EcosistemaModelo
+@{
+    ViewBag.Title = "Ecosistema";
+}
+
+<link rel="stylesheet" href="~/Content/calendar/calendar.css">
+
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span>R E G I O N A L<span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a data-toggle="modal" href="#myModal">Ecosistema</a></li>
+                <li class="tg-active">@Model.Region.Nombre</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--************************************
+                    Events Start
+            *************************************-->
+<section class="tg-Minisectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">                
+                <div class="tg-sectionhead">
+                    <div class="tg-sectiontitles">
+                        <h2>@Model.Region.Nombre</h2>
+                        <!--<h3>Región I</h3>-->
+                    </div>
+                    <div class="tg-description">
+                       <!-- <p>Epazoyucan, Mineral del Monte, Mineral de la Reforma, Pachuca de Soto, San Agustin Tlaxiaca</p> -->
+                        <figure><img src="@Model.Region.URL" style="width: 30%;"/></figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-shortcode tg-shortcodetabs">                    
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="tg-producttabs">
+                                <ul class="tg-navtabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Organizaciones</a></li>
+                                    <li role="presentation"><a href="#review" role="tab" data-toggle="tab">Emprendedores</a></li>
+                                    <li role="presentation"><a href="#custom" role="tab" data-toggle="tab">Eventos</a></li>
+                                </ul>
+                                <div class="tg-producttabcontent tab-content">
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in active" id="description">
+                                        <div id="gmap-dropdown" style="width:inherit;height:400px"></div>
+                                    </div>
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in" id="review">
+                                        <div class="tg-detailbox">
+                                            <figure><img src="~/Content/Images/demo/empr1.jpg" alt="image description"></figure>
+                                            <div class="tg-contentbox">
+                                                <h3>Title Here</h3>
+                                                <div class="tg-description">
+                                                    <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim veniam norudatation ullamco laboris nisi aliquip extea commodo conaquat aue irure dolor inat reprehenderit dolore eufugiation ulla pariatur occaecat cupidatat anat sunt iculpa qui officia.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-detailbox">
+                                            <figure><img src="~/Content/Images/demo/empr2.jpg" alt="image description"></figure>
+                                            <div class="tg-contentbox">
+                                                <h3>Title Here</h3>
+                                                <div class="tg-description">
+                                                    <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim veniam norudatation ullamco laboris nisi aliquip extea commodo conaquat aue irure dolor inat reprehenderit dolore eufugiation ulla pariatur occaecat cupidatat anat sunt iculpa qui officia.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tg-detailbox">
+                                            <figure><img src="~/Content/Images/demo/empr3.jpg" alt="image description"></figure>
+                                            <div class="tg-contentbox">
+                                                <h3>Title Here</h3>
+                                                <div class="tg-description">
+                                                    <p>Consectetur adipisicing eliosmod temporat incididunt tore dolore magn aliqua minim veniam norudatation ullamco laboris nisi aliquip extea commodo conaquat aue irure dolor inat reprehenderit dolore eufugiation ulla pariatur occaecat cupidatat anat sunt iculpa qui officia.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in" id="custom">
+                                        <div id="calendar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!--************************************
+        Events End
+*************************************-->
+
+
+
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=es"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="~/Content/Template/js/maplace.js"></script>
+<script src="~/Content/calendar/jquery.min.js"></script>
+<script src="~/Content/calendar/underscore-min.js"></script>
+<script src="~/Content/calendar/calendar.js"></script>
+<script type="text/javascript">
+    var calendar = $('#calendar').calendar({
+        events_source: [
+            {
+                "id": 293,
+                "title": "Event 1",
+                "url": "http://example.com",
+                "class": "event-important",
+                "start": 12039485678000, // Milliseconds
+                "end": 1234576967000 // Milliseconds
+            },            
+            ]});
+</script>
+<script>
+    var LocsA = [
+    {
+        lat: 20.0770182,
+        lon: -98.77767899999998,
+        title: 'Instituto Hidalguense de Competitividad Empresarial',
+        html: [
+            '<h3>Instituto Hidalguense de Competitividad Empresarial</h3>',
+            '<p>Blvd. Félipe Ángeles, Núm 605, Col. Venta Prieta, Pachuca, Hidalgo, C.P. 42032.</p>',
+            '<p>El Instituto ofrece servicios de acompañamiento empresarial, formación de capital y financiamiento a través del programa Pon Tu Negocio Yo te Apoyo</p>'
+        ].join(''),
+        icon: 'http://maps.google.com/mapfiles/markerA.png',
+        animation: google.maps.Animation.DROP
+    },
+    {
+        lat: 20.1237995,
+        lon: -98.88509390000002,
+        title: 'COBAEH San Agustín Tlaxiaca',
+        html: [
+            '<h3>COBAEH San Agustín Tlaxiaca</h3>',
+            '<p>Carretera Pachuca - tula Vía corta S/n. Km. 1, Barrio Huizache San Agustín Tlaxiaca, Hgo. C.P. 42160</p>',
+            '<p>Institución de Educación Media Superior, comprometida a formar personas íntegras, críticas, reflexivas, autónomas y competentes en los diferentes contextos, para que los jóvenes ingresen a una Institución de Educación Superior y/o se integren al trabajo productivo, coadyuvando significativamente al desarrollo del entorno. Sensibilizan a sus estudiantes en cuestiones de emprendimiento.</p>'
+        ].join(''),
+        icon: 'http://maps.google.com/mapfiles/markerA.png',
+        animation: google.maps.Animation.DROP
+    },
+    {
+        lat: 20.0770182,
+        lon: -98.77767899999998,
+        title: 'EmpreRed Pachuca',
+        html: [
+            '<h3>EmpreRed Pachuca</h3>',
+            '<p>Blvd. Félipe Ángeles, Núm 605, Col. Venta Prieta, Pachuca, Hidalgo, C.P. 42032.</p>',
+            '<p>Las oficinas Emprered son el brazo articulador de la Secretaría de la Secretaría de Desarrollo Económico encargadas de acerca, promover, difundir, gestionar y aplicar a nivel regional los servicios y programas que ofrece el Instituto Hidalguense de Competitividad Empresarial (IHCE), para el desarrollo empresarial a emprendedores y MiPymes.</p>'
+        ].join(''),
+        icon: 'http://maps.google.com/mapfiles/markerA.png',
+        animation: google.maps.Animation.DROP
+    }
+    ];
+    //dropdown example
+    new Maplace({
+        locations: LocsA,
+        map_div: '#gmap-dropdown',
+        controls_title: 'Organizaciónes:',
+        listeners: {
+            click: function (map, event) {
+                
+            }
+        }
+    }).Load();
+</script>

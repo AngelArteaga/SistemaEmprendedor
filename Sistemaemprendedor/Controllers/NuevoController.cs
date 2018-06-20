@@ -56,24 +56,31 @@ namespace Sistemaemprendedor.Controllers
                     //Crea conexión a base de datos
                     SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
                     FileUploadController upload = new FileUploadController();
-                    Evento NuevoEventoObj = new Evento();
+                    Evento NuevoEventoObj = new Evento();                  
                     //Llena datos del evento                
-                    NuevoEventoObj.estatus = 1;
+                    NuevoEventoObj.estatus = 2;
                     NuevoEventoObj.Fecha_actualizacion = DateTime.Today;
                     NuevoEventoObj.Fecha_Creacion = DateTime.Today;
                     NuevoEventoObj.Usuario_actualizacion = 1;
                     NuevoEventoObj.Usuario_Creacion = 1;
                     NuevoEventoObj.Nombre = model.Nombre;
                     NuevoEventoObj.Descripcion = model.Descripcion;
-                    NuevoEventoObj.ShortDesc = new string(model.Descripcion.Take(46).ToArray())+"...";
+                    NuevoEventoObj.ShortDesc = new string(model.Descripcion.Take(250).ToArray())+"...";
                     NuevoEventoObj.idTipoEvento = model.tipoEvento;
                     NuevoEventoObj.Estado = model.Estado;
                     NuevoEventoObj.Ciudad = model.Municipio;
                     NuevoEventoObj.Cp = "CP "+model.CodigoPostal;
                     NuevoEventoObj.Municipio = model.Municipio;
-                    NuevoEventoObj.Calle = model.Calle + " " + model.NumExt;
+                    if (model.NumExt!=null || model.NumExt != "")
+                    {
+                        NuevoEventoObj.Calle = model.Calle + " " + model.NumExt;
+                    }
+                    else
+                    {
+                        NuevoEventoObj.Calle = model.Calle + " S/N";
+                    }
                     NuevoEventoObj.FechaEvento = model.FechaEvento.ToString("dd/MM/yyyy").ToUpper();
-                    NuevoEventoObj.Month = model.FechaEvento.ToString("MMMM").ToUpper();
+                    NuevoEventoObj.Month = model.FechaEvento.ToString("MMMM");
                     TextInfo textInfo = new CultureInfo("es-MX", false).TextInfo;
                     NuevoEventoObj.Month = textInfo.ToTitleCase(NuevoEventoObj.Month);
                     NuevoEventoObj.Day = model.FechaEvento.Day;
@@ -122,11 +129,10 @@ namespace Sistemaemprendedor.Controllers
         [AllowAnonymous]
         public ActionResult RegistroEvento(int id)
         {
-            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
-            NuevoAsistente model = new NuevoAsistente();
-            model.idEvento = id;
-            model.TituloEvento = bd.Evento.Where(x => x.id == id).Select(x => x.Nombre).FirstOrDefault();
-            return View(model);
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();        
+            ViewData["idEvento"] = id;            
+            ViewData["tituloEvento"] = bd.Evento.Where(x => x.id == id).Select(x => x.Nombre).FirstOrDefault();            
+            return View();
         }
 
         // POST: Nuevo Acceso a Evento
@@ -135,6 +141,9 @@ namespace Sistemaemprendedor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegistroEvento(NuevoAsistente model)
         {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ViewData["idEvento"] = model.idEvento;
+            ViewData["tituloEvento"] = bd.Evento.Where(x => x.id == model.idEvento).Select(x => x.Nombre).FirstOrDefault();
             ActionResponses ar = null;
             string msg = null;
             if (ModelState.IsValid)
@@ -142,10 +151,11 @@ namespace Sistemaemprendedor.Controllers
                 try
                 {
                     //Crea conexión a base de datos
-                    SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
                     RegistroAEvento NuevoRegistroObj = new RegistroAEvento();
-                    //Llena datos del evento                         
-                    NuevoRegistroObj.IdEvento = 20;
+                    //Llena datos del evento                                          
+                    NuevoRegistroObj.IdEvento = model.idEvento;
+                    NuevoRegistroObj.Perfil = model.Perfil;
+                    NuevoRegistroObj.Nombre = model.Nombre;
                     NuevoRegistroObj.Fecha_actualizacion = DateTime.Today;
                     NuevoRegistroObj.Fecha_Creacion = DateTime.Today;
                     NuevoRegistroObj.Usuario_actualizacion = 1;

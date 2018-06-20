@@ -13,7 +13,12 @@ namespace Sistemaemprendedor.Models
     {
         public List<Evento> ListaEventos { get; set; }
         public List<Emprendedor> ListaEmprendedor { get; set; }
-        public List<Organizacion> ListaOrganizaciones { get; set; }        
+        public List<Organizacion> ListaOrganizaciones { get; set; }
+
+        //Obtener AsistentesEventos
+        public List<RegistroAEvento> ListaAsistentesDeEventos { get; set; }
+
+        public Evento Evento { get; set; }
 
     }
     public class IndexViewModel
