@@ -32,6 +32,10 @@ namespace Sistemaemprendedor.Models
         public Nullable<int> IdRegion { get; set; }
         public string Imagen { get; set; }
         public string Region { get; set; }
+<<<<<<< HEAD
+=======
+        public Nullable<int> Categoria { get; set; }
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         public string Municipio { get; set; }
         public string CategoriaDesc { get; set; }
         public string ReconocidoPorINADEM { get; set; }
@@ -42,10 +46,15 @@ namespace Sistemaemprendedor.Models
         public string Correo { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
+<<<<<<< HEAD
         public string PaginaWeb { get; set; }
         public string Descripcion { get; set; }
         public string lat { get; set; }
         public string lon { get; set; }
+=======
+        public string Descripcion { get; set; }
+        public string PaginaWeb { get; set; }
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emprendedor> Emprendedor { get; set; }

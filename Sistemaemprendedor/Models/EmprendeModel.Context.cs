@@ -33,8 +33,13 @@ namespace Sistemaemprendedor.Models
         public virtual DbSet<TipoEvento> TipoEvento { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<RegistroAEvento> RegistroAEvento { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<Regiones> Regiones { get; set; }
         public virtual DbSet<Municipios> Municipios { get; set; }
         public virtual DbSet<Organizacion> Organizacion { get; set; }
+=======
+        public virtual DbSet<Organizacion> Organizacion { get; set; }
+        public virtual DbSet<Regiones> Regiones { get; set; }
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
     }
 }

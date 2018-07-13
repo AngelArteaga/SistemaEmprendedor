@@ -18,6 +18,7 @@ namespace Sistemaemprendedor.Controllers
 {
     public class CatalogoController : Controller
     {
+<<<<<<< HEAD
         //Regiones
         public ActionResult Regiones()
         {
@@ -30,6 +31,11 @@ namespace Sistemaemprendedor.Controllers
         public ActionResult Ecosistema(int region)
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+=======
+        //Ecosistema
+        public ActionResult Ecosistema(int region)
+        {
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
             if (region == 14)
             {
                 region = 3;
@@ -37,6 +43,7 @@ namespace Sistemaemprendedor.Controllers
             EcosistemaModelo modelo = new EcosistemaModelo();
             modelo.Region = modelo.RegionSch(region);
             modelo.Organizaciones = modelo.OrganizacionesSch(region);
+<<<<<<< HEAD
             modelo.arr = new MapMarkers[modelo.Organizaciones.Count()];     
             modelo.ListaMunicipios = " - ";
             int i = 0;
@@ -87,6 +94,10 @@ namespace Sistemaemprendedor.Controllers
         }
         
         
+=======
+            return View(modelo);
+        }
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         //Infografia
         public ActionResult Infografia(int region)
         {
@@ -103,12 +114,16 @@ namespace Sistemaemprendedor.Controllers
         {           
             return View();
         }
+<<<<<<< HEAD
         //Cursos
         public ActionResult Cursos()
         {
             return View();
         }
 
+=======
+        
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         // GET: Catalogo
         public ActionResult Index(HttpPostedFileBase file)
         {
@@ -235,6 +250,7 @@ namespace Sistemaemprendedor.Controllers
             CatalogoModelo modelo = new CatalogoModelo();
             modelo.ListaDeEmpresas = bd.Organizacion.Select(x => x).Where(x => x.IdRegion != null).ToList();
             modelo.ListaDeRegiones = bd.Regiones.Select(x => x).ToList();
+<<<<<<< HEAD
             modelo.ListaDeCategorias = new List<string>();            
             foreach (Organizacion empresa in modelo.ListaDeEmpresas)
             {
@@ -271,6 +287,8 @@ namespace Sistemaemprendedor.Controllers
                     }
                 }
             }
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
             return View(modelo);
         }
         public ActionResult Organizacion(int id)

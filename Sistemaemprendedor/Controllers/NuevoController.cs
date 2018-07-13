@@ -56,7 +56,11 @@ namespace Sistemaemprendedor.Controllers
                     //Crea conexión a base de datos
                     SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
                     FileUploadController upload = new FileUploadController();
+<<<<<<< HEAD
                     Evento NuevoEventoObj = new Evento();                         
+=======
+                    Evento NuevoEventoObj = new Evento();                  
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
                     //Llena datos del evento                
                     NuevoEventoObj.estatus = 2;
                     NuevoEventoObj.Fecha_actualizacion = DateTime.Today;
@@ -71,7 +75,10 @@ namespace Sistemaemprendedor.Controllers
                     NuevoEventoObj.Ciudad = model.Municipio;
                     NuevoEventoObj.Cp = "CP "+model.CodigoPostal;
                     NuevoEventoObj.Municipio = model.Municipio;
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
                     if (model.NumExt!=null || model.NumExt != "")
                     {
                         NuevoEventoObj.Calle = model.Calle + " " + model.NumExt;

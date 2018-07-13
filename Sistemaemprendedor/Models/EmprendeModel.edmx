@@ -134,6 +134,10 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="IdRegion" Type="int" />
           <Property Name="Imagen" Type="varchar" MaxLength="30" />
           <Property Name="Region" Type="varchar" MaxLength="200" />
+<<<<<<< HEAD
+=======
+          <Property Name="Categoria" Type="int" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
           <Property Name="Municipio" Type="varchar" MaxLength="50" />
           <Property Name="CategoriaDesc" Type="varchar" MaxLength="50" />
           <Property Name="ReconocidoPorINADEM" Type="varchar" MaxLength="5" />
@@ -144,10 +148,15 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="Correo" Type="varchar" MaxLength="100" />
           <Property Name="Direccion" Type="varchar" MaxLength="300" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" />
+<<<<<<< HEAD
           <Property Name="PaginaWeb" Type="varchar" MaxLength="100" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="lat" Type="varchar" MaxLength="50" />
           <Property Name="lon" Type="varchar" MaxLength="50" />
+=======
+          <Property Name="Descripcion" Type="varchar" MaxLength="5000" />
+          <Property Name="PaginaWeb" Type="varchar" MaxLength="100" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         </EntityType>
         <EntityType Name="ProgramaEmpresa">
           <Key>
@@ -374,8 +383,13 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="Facebook" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Twitter" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+<<<<<<< HEAD
           <NavigationProperty Name="Regiones" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Regiones" FromRole="Emprendedor" ToRole="Regiones" />
           <NavigationProperty Name="Organizacion" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Organizacion" FromRole="Emprendedor" ToRole="Organizacion" />
+=======
+          <NavigationProperty Name="Organizacion" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Organizacion" FromRole="Emprendedor" ToRole="Organizacion" />
+          <NavigationProperty Name="Regiones" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Regiones" FromRole="Emprendedor" ToRole="Regiones" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         </EntityType>
         <EntityType Name="Mentores">
           <Key>
@@ -448,18 +462,31 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <AssociationSet Name="FK_RegistroAEvento_Evento" Association="SistemaEmprendedorModel.FK_RegistroAEvento_Evento">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="RegistroAEvento" EntitySet="RegistroAEvento" />
+<<<<<<< HEAD
           </AssociationSet>
           <EntitySet Name="Regiones" EntityType="SistemaEmprendedorModel.Regiones" />
+=======
+          </AssociationSet>
+          <EntitySet Name="Organizacion" EntityType="SistemaEmprendedorModel.Organizacion" />
+          <EntitySet Name="Regiones" EntityType="SistemaEmprendedorModel.Regiones" />
+          <AssociationSet Name="FK_Emprendedor_Organizacion" Association="SistemaEmprendedorModel.FK_Emprendedor_Organizacion">
+            <End Role="Organizacion" EntitySet="Organizacion" />
+            <End Role="Emprendedor" EntitySet="Emprendedor" />
+          </AssociationSet>
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
           <AssociationSet Name="FK_Emprendedor_Regiones" Association="SistemaEmprendedorModel.FK_Emprendedor_Regiones">
             <End Role="Regiones" EntitySet="Regiones" />
             <End Role="Emprendedor" EntitySet="Emprendedor" />
           </AssociationSet>
+<<<<<<< HEAD
           <EntitySet Name="Municipios" EntityType="SistemaEmprendedorModel.Municipios" />
           <EntitySet Name="Organizacion" EntityType="SistemaEmprendedorModel.Organizacion" />
           <AssociationSet Name="FK_Emprendedor_Organizacion" Association="SistemaEmprendedorModel.FK_Emprendedor_Organizacion">
             <End Role="Organizacion" EntitySet="Organizacion" />
             <End Role="Emprendedor" EntitySet="Emprendedor" />
           </AssociationSet>
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
           <AssociationSet Name="FK_Mentores_Organizacion" Association="SistemaEmprendedorModel.FK_Mentores_Organizacion">
             <End Role="Organizacion" EntitySet="Organizacion" />
             <End Role="Mentores" EntitySet="Mentores" />
@@ -472,7 +499,11 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
             <End Role="Organizacion" EntitySet="Organizacion" />
             <End Role="ProgramaEmpresa" EntitySet="ProgramaEmpresa" />
           </AssociationSet>
+<<<<<<< HEAD
           </EntityContainer>
+=======
+        </EntityContainer>
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -579,6 +610,7 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< HEAD
         <EntityType Name="Regiones">
           <Key>
             <PropertyRef Name="Id" />
@@ -612,6 +644,8 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="idRegion" Type="Int32" Nullable="false" />
         </EntityType>
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         <EntityType Name="Organizacion">
           <Key>
             <PropertyRef Name="id" />
@@ -626,6 +660,10 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="IdRegion" Type="Int32" />
           <Property Name="Imagen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Region" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+<<<<<<< HEAD
+=======
+          <Property Name="Categoria" Type="Int32" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
           <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoriaDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ReconocidoPorINADEM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -636,15 +674,34 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
           <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+<<<<<<< HEAD
           <Property Name="PaginaWeb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="lon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+=======
+          <Property Name="Descripcion" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="PaginaWeb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
           <NavigationProperty Name="Emprendedor" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Organizacion" FromRole="Organizacion" ToRole="Emprendedor" />
           <NavigationProperty Name="Mentores" Relationship="SistemaEmprendedorModel.FK_Mentores_Organizacion" FromRole="Organizacion" ToRole="Mentores" />
           <NavigationProperty Name="Regiones" Relationship="SistemaEmprendedorModel.FK_Organizacion_Regiones" FromRole="Organizacion" ToRole="Regiones" />
           <NavigationProperty Name="ProgramaEmpresa" Relationship="SistemaEmprendedorModel.FK_ProgramaEmpresa_Organizacion" FromRole="Organizacion" ToRole="ProgramaEmpresa" />
         </EntityType>
+<<<<<<< HEAD
+=======
+        <EntityType Name="Regiones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emprendedor" Relationship="SistemaEmprendedorModel.FK_Emprendedor_Regiones" FromRole="Regiones" ToRole="Emprendedor" />
+          <NavigationProperty Name="Organizacion" Relationship="SistemaEmprendedorModel.FK_Organizacion_Regiones" FromRole="Regiones" ToRole="Organizacion" />
+          <Property Name="Infografia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         <Association Name="FK_Emprendedor_Organizacion">
           <End Type="SistemaEmprendedorModel.Organizacion" Role="Organizacion" Multiplicity="0..1" />
           <End Type="SistemaEmprendedorModel.Emprendedor" Role="Emprendedor" Multiplicity="*" />
@@ -654,6 +711,57 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
             </Principal>
             <Dependent Role="Emprendedor">
               <PropertyRef Name="IdEmpresa" />
+<<<<<<< HEAD
+=======
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emprendedor_Regiones">
+          <End Type="SistemaEmprendedorModel.Regiones" Role="Regiones" Multiplicity="0..1" />
+          <End Type="SistemaEmprendedorModel.Emprendedor" Role="Emprendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emprendedor">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mentores_Organizacion">
+          <End Type="SistemaEmprendedorModel.Organizacion" Role="Organizacion" Multiplicity="1" />
+          <End Type="SistemaEmprendedorModel.Mentores" Role="Mentores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mentores">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organizacion_Regiones">
+          <End Type="SistemaEmprendedorModel.Regiones" Role="Regiones" Multiplicity="0..1" />
+          <End Type="SistemaEmprendedorModel.Organizacion" Role="Organizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organizacion">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProgramaEmpresa_Organizacion">
+          <End Type="SistemaEmprendedorModel.Organizacion" Role="Organizacion" Multiplicity="1" />
+          <End Type="SistemaEmprendedorModel.ProgramaEmpresa" Role="ProgramaEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProgramaEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -882,6 +990,7 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
           <EntitySetMapping Name="Regiones">
             <EntityTypeMapping TypeName="SistemaEmprendedorModel.Regiones">
               <MappingFragment StoreEntitySet="Regiones">
@@ -908,6 +1017,13 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
                 <ScalarProperty Name="lat" ColumnName="lat" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="PaginaWeb" ColumnName="PaginaWeb" />
+=======
+          <EntitySetMapping Name="Organizacion">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Organizacion">
+              <MappingFragment StoreEntitySet="Organizacion">
+                <ScalarProperty Name="PaginaWeb" ColumnName="PaginaWeb" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
@@ -918,6 +1034,10 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
                 <ScalarProperty Name="ReconocidoPorINADEM" ColumnName="ReconocidoPorINADEM" />
                 <ScalarProperty Name="CategoriaDesc" ColumnName="CategoriaDesc" />
                 <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+<<<<<<< HEAD
+=======
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
@@ -928,6 +1048,16 @@ warning 6002: The table/view 'Emprendedores.dbo.Municipios' does not have a prim
                 <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
                 <ScalarProperty Name="estatus" ColumnName="estatus" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regiones">
+            <EntityTypeMapping TypeName="SistemaEmprendedorModel.Regiones">
+              <MappingFragment StoreEntitySet="Regiones">
+                <ScalarProperty Name="Infografia" ColumnName="Infografia" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

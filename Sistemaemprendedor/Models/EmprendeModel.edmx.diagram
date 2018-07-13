@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="SistemaEmprendedorModel.Evento" Width="1.5" PointX="10.75" PointY="1.375" />
         <EntityTypeShape EntityType="SistemaEmprendedorModel.RegistroAEvento" Width="1.5" PointX="13" PointY="1.125" />
         <AssociationConnector Association="SistemaEmprendedorModel.FK_RegistroAEvento_Evento" />
+<<<<<<< HEAD
         <EntityTypeShape EntityType="SistemaEmprendedorModel.Regiones" Width="1.5" PointX="0.75" PointY="13.75" />
         <AssociationConnector Association="SistemaEmprendedorModel.FK_Emprendedor_Regiones" />
         <EntityTypeShape EntityType="SistemaEmprendedorModel.Municipios" Width="1.5" PointX="3.375" PointY="0.75" />
@@ -22,6 +23,15 @@
         <AssociationConnector Association="SistemaEmprendedorModel.FK_Mentores_Organizacion" />
         <AssociationConnector Association="SistemaEmprendedorModel.FK_Organizacion_Regiones" />
         <AssociationConnector Association="SistemaEmprendedorModel.FK_ProgramaEmpresa_Organizacion" />
+=======
+        <EntityTypeShape EntityType="SistemaEmprendedorModel.Organizacion" Width="1.5" PointX="3" PointY="12.25" />
+        <AssociationConnector Association="SistemaEmprendedorModel.FK_Emprendedor_Organizacion" />
+        <AssociationConnector Association="SistemaEmprendedorModel.FK_Mentores_Organizacion" />
+        <AssociationConnector Association="SistemaEmprendedorModel.FK_ProgramaEmpresa_Organizacion" />
+        <EntityTypeShape EntityType="SistemaEmprendedorModel.Regiones" Width="1.5" PointX="0.75" PointY="13.75" />
+        <AssociationConnector Association="SistemaEmprendedorModel.FK_Emprendedor_Regiones" />
+        <AssociationConnector Association="SistemaEmprendedorModel.FK_Organizacion_Regiones" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

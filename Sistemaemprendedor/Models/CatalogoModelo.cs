@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sistemaemprendedor.Models
 {
+<<<<<<< HEAD
     public class RegionesModelo
     {
         SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
@@ -26,6 +27,8 @@ namespace Sistemaemprendedor.Models
             return Lista;
         }        
     }
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
     public class EcosistemaModelo
     {
         SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
@@ -47,6 +50,7 @@ namespace Sistemaemprendedor.Models
 
         public List<Organizacion> Organizaciones { get; set; }
 
+<<<<<<< HEAD
         public string ListaMunicipios { get; set; }
         public MapMarkers[] arr { get; set; }
 
@@ -75,6 +79,10 @@ namespace Sistemaemprendedor.Models
         }
     }
     public class CatalogoModelo
+=======
+    }
+        public class CatalogoModelo
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
     {
         SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
         static SistemaEmprendedorEntities bd2 = new SistemaEmprendedorEntities();
@@ -100,10 +108,14 @@ namespace Sistemaemprendedor.Models
         public Organizacion Empresa { get; set; }
         //Obtener Regiones
         public List<Regiones> ListaDeRegiones { get; set; }
+<<<<<<< HEAD
         //Obtener Categorias
         public List<String> ListaDeCategorias { get; set; }
         //Obtener ValidadasPorInadem
         public List<String> ListaDeValidadas { get; set; }
+=======
+
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
         //Obtener Emprendedores
         public List<Emprendedor> ListaDeEmprendedores { get; set; }
         

@@ -415,6 +415,7 @@
     <Content Include="Content\Images\public\portada-04.png" />
     <Content Include="Content\Images\public\presidente.png" />
     <Content Include="Content\Images\public\secretario.png" />
+<<<<<<< HEAD
     <Content Include="Content\Images\Regiones\r1.jpg" />
     <Content Include="Content\Images\Regiones\r10.jpg" />
     <Content Include="Content\Images\Regiones\r11.jpg" />
@@ -432,6 +433,24 @@
     <Content Include="Content\Images\Regiones\r7.jpg" />
     <Content Include="Content\Images\Regiones\r8.jpg" />
     <Content Include="Content\Images\Regiones\r9.jpg" />
+=======
+    <Content Include="Content\Images\Regiones\r1.png" />
+    <Content Include="Content\Images\Regiones\r10.png" />
+    <Content Include="Content\Images\Regiones\r11.png" />
+    <Content Include="Content\Images\Regiones\r12.png" />
+    <Content Include="Content\Images\Regiones\r13.png" />
+    <Content Include="Content\Images\Regiones\r14.png" />
+    <Content Include="Content\Images\Regiones\r15.png" />
+    <Content Include="Content\Images\Regiones\r16.png" />
+    <Content Include="Content\Images\Regiones\r2.png" />
+    <Content Include="Content\Images\Regiones\r3.png" />
+    <Content Include="Content\Images\Regiones\r4.png" />
+    <Content Include="Content\Images\Regiones\r5.png" />
+    <Content Include="Content\Images\Regiones\r6.png" />
+    <Content Include="Content\Images\Regiones\r7.png" />
+    <Content Include="Content\Images\Regiones\r8.png" />
+    <Content Include="Content\Images\Regiones\r9.png" />
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\JQueryUI\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\JQueryUI\images\ui-icons_555555_256x240.png" />
@@ -927,8 +946,11 @@
     <Content Include="Views\Catalogo\Ecosistema.cshtml" />
     <Content Include="Views\Catalogo\Infografia.cshtml" />
     <Content Include="Views\Catalogo\MapaVocaciones.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Catalogo\Cursos.cshtml" />
     <Content Include="Views\Catalogo\Regiones.cshtml" />
+=======
+>>>>>>> 3b6b15cef79ef56c529c0e04914aefb9470b9dcc
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
