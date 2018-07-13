@@ -1,0 +1,68 @@
+﻿@model  Sistemaemprendedor.Models.RegionesModelo
+@{
+    ViewBag.Title = "Regiones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="">Catalogo</a></li>
+                <li class="tg-active">Regiones</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="container tg-Minisectionspace">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+            <div class="tg-sectionhead">
+                <div class="tg-sectiontitles">
+                    <h2>Ecosistema Emprendedor Regional</h2>
+                    <h3>Selecciona una Región</h3>
+                </div>
+            </div>
+        </div>
+        <div class="tg-shortcode tg-trusted">            
+            <div class="tg-trustedclients">
+                @foreach (var region in Model.Regiones)
+                {
+                    <figure title="@Model.ListaMunicipios(region.Id)">
+                        <a href="/Catalogo/ecosistema?region=@region.Id"><img style="max-height:110px" src="@region.URL" title="@Model.ListaMunicipios(region.Id)"></a>
+                        <time class="tg-time" datetime="2017-01-01">@region.Nombre</time>
+                    </figure>
+                }
+            </div>        
+</div>
+    </div>
+</div>
+
+
+
+
+

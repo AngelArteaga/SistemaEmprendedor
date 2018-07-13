@@ -4,6 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Sistemaemprendedor.Models.ActionResponses ActionResponses = ViewBag.ActionResponses;
 }
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
 
 <div class="container">
     <div class="row">
@@ -20,7 +41,7 @@
     </div>
 </div>
 
-<div class="tg-haslayout">
+<div class="tg-sectionspace tg-haslayout">
 @if (Model != null)
 {
     <div class="container">
@@ -37,11 +58,6 @@
                             </div>
                         </div>
                         <div class="tg-eventdetail">
-                            <div class="tg-detailtitle">
-                                <div class="tg-leftarea">                                    
-                                    <time class="tg-eventdatetime" datetime="@Model.Fecha"><i class="icon-clock"></i>@Model.FechaMostrar @@ @Model.HoraEvento Hrs.</time>
-                                </div>
-                            </div>
                             <div class="tg-themepost tg-event">
                                 <figure class="tg-themepostimg">
                                     <a href="javascript:void(0);"><img src="@Model.Url" /></a>
@@ -80,16 +96,16 @@
                                 </div>
                             </div>                             
                             <div id="map" class="tg-Minisectionspace tg-locationmap">
-
                             </div> 
                             <div class="tg-tagsshare tg-Minisectionspace">
-                                <div class="tg-tags">
-                                    <span>Compartir:</span>
-                                    <ul class="tg-socialicons">
-                                        <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-                                    </ul>
-                                </div>
+                          <div class="tg-tags">
+                                <span>Compartir:</span>
+                                <ul class="tg-socialicons">
+                                    <li class="tg-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdev-sistemaemprendedor.azurewebsites.net%2F&amp;src=sdkpreparse" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                                @*<div class="fb-share-button pull-left" data-href="http://dev-sistemaemprendedor.azurewebsites.net/catalogo/eventos" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdev-sistemaemprendedor.azurewebsites.net%2F&amp;src=sdkpreparse">Compartir</a></div>*@
                                 <div class="tg-socialshare pull-right">
                                     <div class="tg-btnarea">
                                         <a class="tg-btn pull-right" href="@Url.Action("RegistroEvento", "Nuevo", new { id = Model.idEvento })">Registrarse</a>
@@ -146,11 +162,21 @@ else
 }
 
 </div>
+<div id="fb-root"></div>
+
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=es"></script>
 <script src="~/Content/Map/gmaps.js"></script>
 @section Scripts
 {
     <script type="text/javascript">
+        //fb share
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.11&appId=1690945784313516';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     // Counter.
         $(document).ready(function () {            
             $('.tg-upcomingeventcounter').countdown('@Model.Counter', function (event) {

@@ -1,0 +1,139 @@
+﻿@using Sistemaemprendedor.Models
+@model EcosistemaModelo
+@{
+    ViewBag.Title = "Ecosistema";
+}
+
+<link rel="stylesheet" href="~/Content/calendar/calendar.css">
+
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span>R E G I O N A L<span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("Regiones", "Catalogo")">Ecosistema Regional</a></li>
+                <li class="tg-active">@Model.Region.Nombre</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--************************************
+                    Events Start
+            *************************************-->
+<section class="tg-Minisectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">                
+                <div class="tg-sectionhead">
+                    <div class="tg-sectiontitles">
+                        <h2>@Model.Region.Nombre</h2>
+                        <!--<h3>Región I</h3>-->
+                    </div>
+                    <div class="tg-description">
+                       <p>@Model.ListaMunicipios</p>
+                        <figure><img src="@Model.Region.URL" style="width: 30%;"/></figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-shortcode tg-shortcodetabs">                    
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="tg-producttabs">
+                                <ul class="tg-navtabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Mapeo Organizaciones</a></li>
+                                    <li role="presentation"><a href="#review" role="tab" data-toggle="tab">Organizaciones</a></li>
+                                    @*<li role="presentation"><a href="#custom" role="tab" data-toggle="tab">Eventos</a></li>*@
+                                </ul>
+                                <div class="tg-producttabcontent tab-content">
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in active" id="description">
+                                        <div id="gmap-dropdown" style="width:inherit;height:400px"></div>
+                                    </div>
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in" id="review">
+                                        @foreach (var org in Model.Organizaciones)
+                                        {
+                                            <div class="tg-detailbox">
+                                                <figure><a href="/Catalogo/Organizacion?id=@org.id"><img src="https://sestgpr.blob.core.windows.net/images/@org.Imagen" title="@org.Nombre"></a></figure>
+                                                <div class="tg-contentbox">
+                                                    <a href="/Catalogo/Organizacion?id=@org.id"><h3>@org.Nombre</h3></a>
+                                                    <div class="tg-description">
+                                                        <p>@org.Descripcion</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }                                                                          
+                                    </div>
+                                    <div role="tabpanel" class="tg-tabpan tab-pane fade in" id="custom">
+                                        <div id="calendar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row tg-sectionspace"></div>
+    </div>
+
+</section>
+<!--************************************
+        Events End
+*************************************-->
+
+
+
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=es"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="~/Content/Template/js/maplace.js"></script>
+<script src="~/Content/calendar/jquery.min.js"></script>
+<script src="~/Content/calendar/underscore-min.js"></script>
+<script src="~/Content/calendar/calendar.js"></script>
+<script type="text/javascript">
+    var calendar = $('#calendar').calendar({
+        events_source: [
+            {
+                "id": 293,
+                "title": "Event 1",
+                "url": "http://example.com",
+                "class": "event-important",
+                "start": 12039485678000, // Milliseconds
+                "end": 1234576967000 // Milliseconds
+            },            
+            ]});
+</script>
+<script>
+    var MapMarkers = @Html.Raw(Json.Encode(ViewBag.Markers));
+    //dropdown example
+    new Maplace({
+        locations: MapMarkers,
+        map_div: '#gmap-dropdown',
+        //controls_title: 'Organizaciónes:',
+        controls_on_map: false,
+        listeners: {
+            click: function (map, event) {                
+            }
+        }
+    }).Load();    
+</script>

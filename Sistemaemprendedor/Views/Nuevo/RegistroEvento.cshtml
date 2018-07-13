@@ -4,18 +4,38 @@
     ViewBag.Title = "RegistroEvento";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Sistemaemprendedor.Models.ActionResponses ActionResponses = ViewBag.ActionResponses;
+    var idEventoA = ViewData["idEvento"];
+    var tituloEventoA = ViewData["tituloEvento"];
 }
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ol class="tg-breadcrumb">
                 <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
-                <li><a href="@Url.Action("Eventos", "Catalogo")">Eventos</a></li>
-                @if (Model.TituloEvento != null)
-                {
-                    <li><a href="@Url.Action("Evento", "Catalogo", new { id = Model.idEvento })">@Model.TituloEvento</a></li>
-                }                
+                <li><a href="@Url.Action("Eventos", "Catalogo")">Eventos</a></li>               
+                <li><a href="@Url.Action("Evento", "Catalogo", new { id = idEventoA })">@tituloEventoA as string</a></li>                              
                 <li class="tg-active">Registro</li>
             </ol>
 
@@ -42,7 +62,7 @@
                         <span>@ActionResponses.Messages</span>
                     </div>
                     <div class="" style="text-align:center">
-                        <a href="/Catalogo/Evento" class="btn btn-primary"><i class="icon-ok-circle icon-white"></i>Aceptar</a>
+                        <a href="/Catalogo/Evento/@idEventoA" class="btn btn-primary"><i class="icon-ok-circle icon-white"></i>Aceptar</a>
                     </div>
                 </div>                
             </div>
@@ -61,24 +81,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="alert alert-info tg-alertmessage fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>                    
+                    <ul>
+                        <li>Se considera MIPYME a los empresarios registrados en la Secretaria de Hacienda y Crédito Público (SHCP) y en del Servicio de Administración Tributaria (SAT), ya sea como Persona Física o Persona Moral.</li>
+                        <li>Se considera Emprendedor a aquella persona que apenas va a iniciar su modelo de negocio y/o que aún no se encuentra dada de alta en la SHCP.</li>                     
+                    </ul>                     
+                </div>               
                 @using (Html.BeginForm("RegistroEvento", "Nuevo", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <section id="newAccessEventForm">
-                        <span>
-                            <p>
-                                Se considera MIPYME a los empresarios registrados en la Secretaria de Hacienda y Crédito
-                                Público (SHCP) y en del Servicio de Administración Tributaria (SAT), ya sea como Persona Física
-                                o Persona Moral.
-                            </p>
-                        </span>
-                        <span>
-                            <p>
-                                Se considera Emprendedor a aquella persona que apenas va a iniciar su modelo de negocio y/o
-                                que aún no se encuentra dada de alta en la SHCP.
-                            </p>
-                        </span>
+                    <section id="newAccessEventForm">                                                
                         <div id="tg-twocolumns" class="tg-twocolumns">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-left">                                
                                 <div class="form-group">
@@ -90,11 +104,11 @@
                             }, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Perfil, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     @Html.LabelFor(m => m.Correo)
                                     @Html.TextBoxFor(m => m.Correo, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
-                                </div>
+                                </div>*@
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Nombre)
                                     @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
@@ -122,9 +136,11 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Estado)
-                                    @Html.TextBoxFor(m => m.Estado, new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.Estado, new List<SelectListItem> {
+                        new SelectListItem{Value="Hidalgo", Text = "Hidalgo"}
+                    }, new { @class = "form-control", @readonly = "readonly" })
                                     @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
-                                </div>
+                                </div> 
                                 <div class="form-group">
                                     @Html.LabelFor(m => m.Curp)
                                     @Html.TextBoxFor(m => m.Curp, new { @class = "form-control" })
@@ -135,10 +151,7 @@
                                     @Html.LabelFor(m => m.Telefono)
                                     @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group" style="visibility:hidden">
-                                    @Html.TextBoxFor(m => m.idEvento, new { @class = "form-control" })
-                                </div>                                
+                                </div>                                                           
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right">
                                 <div class="form-group">
@@ -295,8 +308,7 @@
                                     @Html.DropDownListFor(m => m.Sector, new List<SelectListItem> {
                                 new SelectListItem{Value="", Text = "Selecciona una opción"},
                                 new SelectListItem{Value="Industria", Text = "Industria"},
-                                new SelectListItem{Value="Comercio", Text = "Comercio"},
-                                new SelectListItem{Value="Crecimiento", Text = "Crecimiento"},
+                                new SelectListItem{Value="Comercio", Text = "Comercio"},                          
                                 new SelectListItem{Value="Servicios", Text = "Servicios"}
                             }, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Sector, "", new { @class = "text-danger" })
@@ -318,11 +330,14 @@
                                 <div class="form-group" style="visibility:hidden">
                                     @Html.TextBoxFor(m => m.TituloEvento, new { @class = "form-control" })
                                 </div>
+                                <div class="form-group" style="visibility:hidden">
+                                    @Html.TextBoxFor(m => m.idEvento, new { @class = "form-control", @Value = (idEventoA) })
+                                </div>
                             </div>
                         </div>
                         <div class="form-group" style="text-align:center">
                             <input type="submit" value="Enviar" class="btn btn-primary" />
-                            <a href="@Url.Action("Evento", "Catalogo", new { id = Model.idEvento })" class="btn btn-danger"><i class="icon-exclamation-sign icon-white"></i>&nbsp;Cancelar</a>
+                            <a href="@Url.Action("Evento", "Catalogo", new { id = idEventoA })" class="btn btn-danger"><i class="icon-exclamation-sign icon-white"></i>&nbsp;Cancelar</a>
                         </div>
                     </section>
                 }
@@ -331,6 +346,8 @@
     </div>
 </div>
 
+@section Scripts
+{
 <script>    
     $(function () {
         $('#FechaNacimiento').datepicker({
@@ -339,4 +356,4 @@
         });
     });
 </script>
-
+}
