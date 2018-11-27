@@ -1,0 +1,175 @@
+﻿@model  Sistemaemprendedor.Models.ManageCatalogo
+@{
+    ViewBag.Title = "AdministrarArticulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Sistemaemprendedor.Models.ActionResponses ActionResponses = ViewBag.ActionResponses;
+}
+
+<link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li class="tg-active">Administrar Articulos</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+@if (Model.ListaArticulos != null)
+{
+    <div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="row">
+                @if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.SUCCESS)
+                {
+                    <div class="alert alert-success tg-alertmessage fade in">
+                        <i class="fa fa-check"></i>
+                        <span>@ActionResponses.Messages</span>
+                    </div>
+                }
+                else if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.ERROR)
+                {
+                    <div class="alert alert-danger tg-alertmessage fade in">
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span>@ActionResponses.Messages</span>
+                    </div>
+                }
+                <div id="tg-twocolumns" class="tg-twocolumns">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div id="tg-content" class="tg-content">
+                            <div class="tg-sectionhead">
+                                <div class="tg-sectiontitles">
+                                    <h2>Lista de Articulos</h2>
+                                </div>
+                                <div class="tg-description">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="tg-btnarea">
+                                <a class="tg-btn" href="@Url.Action("Articulo", "Nuevo")">Agregar Articulo</a>
+                            </div>
+                            <div class="tg-eventdetail">
+                                <table id="Organizaciones" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Autor</th>
+                                            <th>Categoría</th>
+                                            <th>Estatus</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var articulo in Model.ListaArticulos)
+                                        {
+                                            <tr>
+                                                <td><a href="/Articulos/Articulo?id=@articulo.Id" target="_blank">@articulo.Nombre</a></td>
+                                                <td>@articulo.Autor</td>
+                                                <td>@articulo.Categoria</td>
+                                                <td>@Model.ArtStatus(articulo.Id)</td>                                                                                                
+                                                <td>
+                                                    <a href="/Manage/Activar?tipo=3&id=@articulo.Id" onclick="return confirm('¿Desea activar este articulo?')" style="float:initial" class=""><span class=""></span> Activar</a><br />
+                                                    <a href="/Manage/Desactivar?tipo=3&id=@articulo.Id" onclick="return confirm('¿Desea desactivar este articulo?')" style="float:initial" class=""><span class=""></span> Desactivar</a><br />
+                                                    <a href="/Manage/Eliminar?tipo=3&id=@articulo.Id" onclick="return confirm('¿Desea eliminar este articulo?')" style="float:initial" class=""><span class=""></span> Eliminar</a><br />
+                                                    <a href="/Manage/EditarArticulo?id=@articulo.Id" onclick="return confirm('¿Desea editar este articulo?')" style="float:initial" class=""><span class=""></span> Editar</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <!--************************************
+                Sin Resultados
+    *************************************-->
+    <div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="tg-404error">
+                <div class="tg-404errorcontet">
+                    <h1>404</h1>
+                    <div class="tg-404holder">
+                        <h2>Lo sentimos!</h2>
+                        <h3>No existen articulos registrados en este momento</h3>
+                    </div>
+                </div>
+                <div class="col-xs-offset-0 col-xs-12 col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+                    <form class="tg-formtheme tg-form404search">
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="search" name="search" class="form-control" placeholder="Busqueda">
+                                <button class="tg-btn" type="submit">Buscar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    
+                    <div class="tg-btngoback">
+                        <span>ó</span><a href="@Url.Action("Index", "Home")">
+                            Ir al inicio.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--************************************
+                404 Error End
+        *************************************-->
+
+}
+
+<script>
+
+    $(document).ready(function () {
+        $('#Organizaciones').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "search": "Buscar:",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Sigueinte"
+                }
+            },
+            buttons: [
+        'copy', 'excel', 'pdf'
+            ]
+        });
+    });
+</script>
+

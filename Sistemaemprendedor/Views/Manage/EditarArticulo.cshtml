@@ -1,0 +1,185 @@
+﻿@using Sistemaemprendedor.Models
+@model EditarArticuloForm
+@{
+    ViewBag.Title = "Editar Articulo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Sistemaemprendedor.Models.ActionResponses ActionResponses = ViewBag.ActionResponses;
+}
+
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("AdministrarArticulos", "Manage")">Administrar Articulos</a></li>
+                <li class="tg-active">Nuevo</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!--************************************
+        Formulario
+*************************************-->
+<div class="tg-haslayout tg-sectionspace">
+    <div class="tg-sectionhead">
+        <div class="tg-sectiontitles">
+            <h2>Editar Articulo</h2>
+            <h3>Llena los campos del siguiente formulario</h3>
+        </div>
+        <div class="tg-description">
+            <p></p>
+        </div>
+    </div>
+    <div class="container">
+        @if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.SUCCESS)
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                    <div class="alert alert-success tg-alertmessage fade in">
+                        <i class="fa fa-check"></i>
+                        <span>@ActionResponses.Messages</span>
+                    </div>
+                    <div class="" style="text-align:center">
+                        <a href="/Manage/AdministrarArticulos" class="btn btn-primary"><i class="icon-ok-circle icon-white"></i>Aceptar</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                    @if (ActionResponses != null && ActionResponses.Type == Sistemaemprendedor.Models.ResponseType.ERROR)
+                {
+                        <div class="alert alert-danger tg-alertmessage fade in">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <span>@ActionResponses.Messages</span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                @using (Html.BeginForm("ActualizarArticulo", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <section id="newEventForm">
+                        <div id="tg-twocolumns" class="tg-twocolumns">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Nombre)
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Autor)
+                                    @Html.TextBoxFor(m => m.Autor, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Autor, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Categoria)
+                                    @Html.DropDownListFor(m => m.Categoria, new List<SelectListItem> {
+                                        new SelectListItem{Value="0", Text = "Selecciona una categoría"},
+                                        new SelectListItem{Value="1", Text = "Eventos"},
+                                        new SelectListItem{Value="2", Text = "Historias"},
+                                        new SelectListItem{Value="3", Text = "Mujeres Emprendedoras"},
+                                        new SelectListItem{Value="4", Text = "Otros"}
+                                    }, new { @id = "Muni", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Categoria, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <br />
+                                    <img src="https://sestgpr.blob.core.windows.net/images/@Model.Imagen" />
+                                    <br />
+                                </div>
+                                <div class="form-group">
+                                    <label for="file">Imágen del Articulo:</label>
+                                    <br />
+                                    <input type="file" name="file" id="file" style="width: 100%;" />
+                                    <br />
+                                </div>
+                                <div class="form-group" style="text-align:center">
+                                    <input type="submit" value="Publicar Articulo" class="btn btn-success" />
+                                    <a href="/Articulos/Categorias" class="btn btn-danger">&nbsp;Cancelar</a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Intro)
+                                    @Html.TextAreaFor(m => m.Intro, new { @class = "form-control", id = "texto", cols = "50", rows = "10" })
+                                    @Html.ValidationMessageFor(m => m.Intro, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Texto)
+                                    @Html.TextAreaFor(m => m.Texto, new { @class = "form-control", id = "texto", cols = "50", rows = "20", onkeyup = "showHTML()" })
+                                    @Html.ValidationMessageFor(m => m.Texto, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="text-align:center">
+                                    <a href="javascript:void(0);" id="myBtn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">Vista prevía texto del articulo</a>
+                                </div>
+                                <div class="form-group" style="display:none">                                    
+                                    @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group" style="display:none">                                    
+                                    @Html.TextBoxFor(m => m.Estatus, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Vista previa del articulo (Texto)</h4>
+                                    </div>
+                                    <div id="TextoModal" class="modal-body">
+                                        <p id="TextoModa"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                }
+            </div>
+        }
+    </div>
+</div>
+<script>
+    function showHTML() {
+    // ref textarea
+    textarea1 = document.getElementById('texto');
+    // where to view HTML code
+    viewHtml = document.getElementById('TextoModal');
+    // Finally get HTML output in div
+    viewHtml.innerHTML = textarea1.value;
+}
+</script>

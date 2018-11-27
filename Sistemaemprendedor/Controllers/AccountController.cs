@@ -17,9 +17,11 @@ namespace Sistemaemprendedor.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -75,7 +77,15 @@ namespace Sistemaemprendedor.Controllers
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //busca usuario
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            UserStatus usuario = bd.UserStatus.Where(x => x.UserName == model.UserName).Select(x => x).FirstOrDefault();
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            if (usuario != null && usuario.Status == 0)
+            {
+                ModelState.AddModelError("", "Usuario no activo.");
+                return View(model);
+            }
             switch (result)
             {
                 case SignInStatus.Success:
@@ -89,6 +99,44 @@ namespace Sistemaemprendedor.Controllers
                     ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
                     return View(model);
             }
+        }
+
+        //
+        // POST: /Account/Activate user              
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Activate(string username)
+        {
+                       
+            //busca usuario
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            UserStatus usuario = bd.UserStatus.Where(x => x.UserName == username).Select(x => x).FirstOrDefault();
+            
+            if (usuario != null && usuario.Status == 0)
+            {
+                usuario.Status = 1;
+                bd.SaveChanges();
+                //return RedirectToAction("Usuarios", "Manage");
+            }
+            return RedirectToAction("Usuarios","Manage");
+        }
+
+        //
+        // POST: /Account/Deactivate user              
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Deactivate(string username)
+        {
+
+            //busca usuario
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            UserStatus usuario = bd.UserStatus.Where(x => x.UserName == username).Select(x => x).FirstOrDefault();
+
+            if (usuario != null && usuario.Status == 1)
+            {
+                usuario.Status = 0;
+                bd.SaveChanges();
+                //return RedirectToAction("Usuarios", "Manage");
+            }
+            return RedirectToAction("Usuarios", "Manage");
         }
 
         //
@@ -136,39 +184,68 @@ namespace Sistemaemprendedor.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
             return View();
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ActionResponses ar = null;
+            string msg = null;
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            UserStatus usuario = bd.UserStatus.Where(x => x.UserName == model.UserName).Select(x => x).FirstOrDefault();
+
+            if(usuario != null)
+            {
+                msg = "Ya existe este usuario";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                usuario = new UserStatus();
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                AddErrors(result);
+                usuario.UserName = model.UserName;
+                usuario.Status = 1;
+                bd.UserStatus.Add(usuario);
+                bd.SaveChanges();
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //Assign Role to user Here 
+                    await this.UserManager.AddToRoleAsync(user.Id, "Administrador");
+                    //Ends Here
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    msg = "Usuario agregado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    return View(model);
                 }
                 AddErrors(result);
             }
 
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+            msg = "Algo salió mal durante el proceso, intentelo nuevamente y si el error persiste consulte con el administrador del sistema.";
+            ar = new ActionResponses(ResponseType.ERROR, msg);
+            ViewBag.ActionResponses = ar;
             return View(model);
         }
 
@@ -244,16 +321,18 @@ namespace Sistemaemprendedor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.Email);            
             if (user == null)
             {
                 // No revelar que el usuario no existe
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+            model.Code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {

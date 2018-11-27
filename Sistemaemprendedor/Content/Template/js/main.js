@@ -380,25 +380,7 @@ jQuery(document).on('ready', function() {
 	//		+ '<div class="tg-eventcounter"><span>%S</span><span>S</span></div>'
 	//	));
 	//});
-	/* -------------------------------------
-			Google Map
-	-------------------------------------- */
-	jQuery("#tg-officelocationmap").gmap3({
-		marker: {
-			address: "1600 Elizabeth St, Melbourne, Victoria, Australia",
-			options: {
-				title: "Service Providers",
-				icon: "images/map-marker2.png",
-			}
-		},
-		map: {
-			options: {
-				zoom: 16,
-				scrollwheel: false,
-				disableDoubleClickZoom: true,
-			}
-		}
-	});
+	
 	/* -------------------------------------
 			SERVICES SLIDER
 	-------------------------------------- */

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Sistemaemprendedor.Models
 {
@@ -120,8 +121,7 @@ namespace Sistemaemprendedor.Models
         [Display(Name = "Apellido Materno:")]
         public string ApellidoMat { get; set; }
 
-
-        [DataType(DataType.Date)]
+        
         [Display(Name = "Fecha de Nacimiento:")]
         public DateTime FechaNacimiento { get; set; }
 
@@ -205,310 +205,114 @@ namespace Sistemaemprendedor.Models
     {
         //Etapa Organización
         [Required]
-        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 15)]
+        [StringLength(200, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 15)]
         [DataType(DataType.Text)]
         [Display(Name = "Nombre de la Institucion: *")]
-        public string NombreOrg { get; set; }
+        public string Nombre { get; set; }                
 
         [Required]
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Municipio: *")]
+        public string Municipio { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Categoría: *")]
+        public string Categoria { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "¿Te encuentras reconocido por el INADEM?: *")]
+        public string Reconocido { get; set; }
+
+        [Required]
+        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nombre del representante legal: *")]
+        public string NombreRepresentante { get; set; }
+
+        [Required]
+        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nombre del enlace: *")]
+        public string NombreEnlace { get; set; }
+
+        [Required]
+        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Cargo del enlace: *")]
+        public string CargoEnlace { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Sector: *")]
+        public string Sector { get; set; }
+
+        [Required]        
+        [StringLength(50, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
         [Display(Name = "Correo electrónico: *")]
-        public string CorreoOrg { get; set; }
+        public string Correo { get; set; }
 
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo electrónico Colaborador 2:")]
-        public string Correo2Org { get; set; }
+        [Required]
+        [StringLength(300, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Dirección (Calle, Número exterior, Número interior, Colonia, Municipio, C.P. ): *")]
+        public string Direccion { get; set; }
+        
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Teléfono: *")]
+        public string Telefono { get; set; }
 
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo electrónico Colaborador 3:")]
-        public string Correo3Org { get; set; }
-
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo electrónico Colaborador 4:")]
-        public string Correo4Org { get; set; }
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 5)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Página Web: *")]
+        public string PaginaWeb { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Región: *")]
-        public string RegionOrg { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Tipo de Organismo de Apoyo al Emprendedor: *")]
-        public string OrganismoApoyoOrg { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "¿Estás reconocido por el INADEM? *")]
-        public int ReconocidoINADEMOrg { get; set; }
-
-        [Required]
-        [StringLength(1000, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 20)]
-        [DataType(DataType.MultilineText)]
-        [Display(Name = "Breve descripción: *")]
-        public string DescripcionOrg { get; set; }
-
-        [Required]
-        [StringLength(500, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 30)]
-        [DataType(DataType.Text)]
-        [Display(Name = "Principales servicios y productos de apoyo al emprendedor: *")]
-        public string ApoyosEmprendedorOrg { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Número de Teléfono: *")]
-        public string TelefonoOrg { get; set; }
-
-        [DataType(DataType.Url)]
-        [Display(Name = "Sitio web: *")]
-        public string WebsiteOrg { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Facebook: *")]
-        public string FacebookOrg { get; set; }
-
+        [Display(Name = "Descripción: *")]
+        public string Descripcion { get; set; }
         
-        [DataType(DataType.Text)]
-        [Display(Name = "Twitter:")]
-        public string TwitterOrg { get; set; }
-
-        [Required]
-        [StringLength(200, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 10)]
-        [DataType(DataType.Text)]
-        [Display(Name = "Dirección: *")]
-        public string DireccionOrg { get; set; }
-
-        //Datos Representante
-
-        [Required]
-        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 15)]
-        [DataType(DataType.Text)]
-        [Display(Name = "Nombre del representante: *")]
-        public string NombreRep { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo electrónico del representante: *")]
-        public string CorreoRep { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Número de teléfono del representante: *")]
-        public string TelefonoRep { get; set; }
-           
-        [DataType(DataType.Text)]
-        [Display(Name = "LinkedIn:")]
-        public string LinkedInRep { get; set; }
-
-        //Datos Mentor 1                
-        [DataType(DataType.Text)]
-        [Display(Name = "Nombre Completo:")]
-        public string NombreMent1 { get; set; }
+        public string lat { get; set; }
         
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo Electrónico:")]
-        public string CorreoMent1 { get; set; }
+        public string lon { get; set; }
+
+    }
+
+    //Formulario para nuevo articulo
+    public class NuevoArticuloForm
+    {
+        
+        [Required]
+        [StringLength(200, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 20)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nombre del articulo: *")]
+        public string Nombre { get; set; }
+
+        [Required]        
+        [DataType(DataType.Text)]
+        [Display(Name = "Introducción del articulo: *")]
+        public string Intro { get; set; }
 
         [Required]
+        [AllowHtml]
         [DataType(DataType.Text)]
-        [Display(Name = "Número de Teléfono:")]
-        public string TelefonoMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "LinkedIn:")]
-        public string LinkedInMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE NEGOCIO:")]
-        public int DesarrolloNegocioMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MERCADOTECNIA:")]
-        public int MercadotecniaMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE SOFTWARE:")]
-        public int DesarrolloSoftwareMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE HARDWARE:")]
-        public int DesarrolloHardwareMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "PITCH:")]
-        public int PitchMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "FINANZAS:")]
-        public int FinanzasMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "CONTABILIDAD:")]
-        public int ContabilidadMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "VALIDACION:")]
-        public int ValidaciónMEnt1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MINIMO VIABLE:")]
-        public int MinimoVariableMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "LEGAL:")]
-        public int LegalMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "STARTUPS:")]
-        public int StartupsMent1 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "ADMINISTRACIÓN:")]
-        public int AdministracionMent1 { get; set; }
-
-        //Datos Mentor 2   
-        [DataType(DataType.Text)]
-        [Display(Name = "Nombre Completo:")]
-        public string NombreMent2 { get; set; }
-
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo Electrónico:")]
-        public string CorreoMent2 { get; set; }
+        [Display(Name = "Texto del articulo (Puede incluir tags HTML): *")]
+        public string Texto { get; set; }
 
         [Required]
+        [StringLength(150, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 20)]
         [DataType(DataType.Text)]
-        [Display(Name = "Número de Teléfono:")]
-        public string TelefonoMent2 { get; set; }
+        [Display(Name = "Autor: *")]
+        public string Autor { get; set; }
 
+        [Required]        
         [DataType(DataType.Text)]
-        [Display(Name = "LinkedIn:")]
-        public string LinkedInMent2 { get; set; }
+        [Display(Name = "Categoria: *")]
+        public int Categoria { get; set; }
 
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE NEGOCIO:")]
-        public int DesarrolloNegocioMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MERCADOTECNIA:")]
-        public int MercadotecniaMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE SOFTWARE:")]
-        public int DesarrolloSoftwareMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE HARDWARE:")]
-        public int DesarrolloHardwareMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "PITCH:")]
-        public int PitchMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "FINANZAS:")]
-        public int FinanzasMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "CONTABILIDAD:")]
-        public int ContabilidadMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "VALIDACION:")]
-        public int ValidaciónMEnt2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MINIMO VIABLE:")]
-        public int MinimoVariableMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "LEGAL:")]
-        public int LegalMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "STARTUPS:")]
-        public int StartupsMent2 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "ADMINISTRACIÓN:")]
-        public int AdministracionMent2 { get; set; }
-
-        //Datos Mentor 3                
-        [DataType(DataType.Text)]
-        [Display(Name = "Nombre Completo:")]
-        public string NombreMent3 { get; set; }
-
-        [EmailAddress]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo Electrónico:")]
-        public string CorreoMent3 { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Número de Teléfono:")]
-        public string TelefonoMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "LinkedIn:")]
-        public string LinkedInMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE NEGOCIO:")]
-        public int DesarrolloNegocioMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MERCADOTECNIA:")]
-        public int MercadotecniaMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE SOFTWARE:")]
-        public int DesarrolloSoftwareMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "DESARROLLO DE HARDWARE:")]
-        public int DesarrolloHardwareMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "PITCH:")]
-        public int PitchMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "FINANZAS:")]
-        public int FinanzasMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "CONTABILIDAD:")]
-        public int ContabilidadMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "VALIDACION:")]
-        public int ValidaciónMEnt3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "MINIMO VIABLE:")]
-        public int MinimoVariableMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "LEGAL:")]
-        public int LegalMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "STARTUPS:")]
-        public int StartupsMent3 { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "ADMINISTRACIÓN:")]
-        public int AdministracionMent3 { get; set; }
-
-        [Required]
-        [Display(Name = "Aviso de Privacidad")]
-        public Boolean Privacidad { get; set; }
     }
 }

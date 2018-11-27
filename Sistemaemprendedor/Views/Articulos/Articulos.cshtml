@@ -1,0 +1,36 @@
+﻿@model  Sistemaemprendedor.Models.CategoriasArticulosModelo
+<div class="tg-title tg-bgdark">
+    <center>
+        <h2 style="margin: auto;line-height: 80px;vertical-align:middle;color:white;">@Model.Categoria</h2>
+        <h4 style="color:white">@Model.Articulos.Count() Articulos</h4>
+    </center>
+</div>  
+@if (Model.Articulos.Count() != 0)
+{
+    foreach (var art in Model.Articulos)
+    {
+        <article class="tg-themepost tg-postleftimg tg-newsarticle">
+            <div class="tg-themepostcontent">
+                <div class="tg-themeposttitle">
+                    <h3><a href="/Articulos/Articulo?id=@art.Id">@art.Nombre</a></h3>
+                </div>
+                <ul class="tg-postmatadata">
+                    <li><i class="icon-user"></i> <span>@art.Autor</span></li>
+                    <li><i class="fa fa-calendar-o"></i> <span>@art.Fecha.ToShortDateString()</span></li>
+                </ul>          
+                <div class="tg-description">                    
+                    <p>@art.Introduccion</p>
+                </div>      
+                <a class="tg-btnreadmore" href="/Articulos/Articulo?id=@art.Id">ver más...</a>
+            </div>
+        </article>
+    }
+}
+else
+{
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="tg-pageheading">            
+            <center><h2>¡Lo sentimos!<span>No se encontraron articulos, intenta con otra categoría</span></h2></center>
+        </div>
+    </div>
+}

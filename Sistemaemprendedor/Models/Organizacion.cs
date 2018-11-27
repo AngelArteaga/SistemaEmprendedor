@@ -29,22 +29,23 @@ namespace Sistemaemprendedor.Models
         public int Usuario_actualizacion { get; set; }
         public int Usuario_Creacion { get; set; }
         public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Correo2 { get; set; }
-        public string Correo3 { get; set; }
-        public string Correo4 { get; set; }
         public Nullable<int> IdRegion { get; set; }
-        public string OrganismoApoyo { get; set; }
-        public Nullable<int> ReconocidoINADEM { get; set; }
-        public string Descripcion { get; set; }
-        public string ApoyosEmprendedor { get; set; }
-        public string Telefono { get; set; }
-        public string WebPage { get; set; }
-        public string Facebook { get; set; }
-        public string Twitter { get; set; }
         public string Imagen { get; set; }
         public string Region { get; set; }
-        public Nullable<int> Categoria { get; set; }
+        public string Municipio { get; set; }
+        public string CategoriaDesc { get; set; }
+        public string ReconocidoPorINADEM { get; set; }
+        public string RepresentanteLegal { get; set; }
+        public string Enlace { get; set; }
+        public string CargoEnlace { get; set; }
+        public string Sector { get; set; }
+        public string Correo { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string PaginaWeb { get; set; }
+        public string Descripcion { get; set; }
+        public string lat { get; set; }
+        public string lon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emprendedor> Emprendedor { get; set; }

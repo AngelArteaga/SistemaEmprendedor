@@ -56,24 +56,32 @@ namespace Sistemaemprendedor.Controllers
                     //Crea conexión a base de datos
                     SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
                     FileUploadController upload = new FileUploadController();
-                    Evento NuevoEventoObj = new Evento();
+                    Evento NuevoEventoObj = new Evento();                         
                     //Llena datos del evento                
-                    NuevoEventoObj.estatus = 1;
+                    NuevoEventoObj.estatus = 2;
                     NuevoEventoObj.Fecha_actualizacion = DateTime.Today;
                     NuevoEventoObj.Fecha_Creacion = DateTime.Today;
                     NuevoEventoObj.Usuario_actualizacion = 1;
                     NuevoEventoObj.Usuario_Creacion = 1;
                     NuevoEventoObj.Nombre = model.Nombre;
                     NuevoEventoObj.Descripcion = model.Descripcion;
-                    NuevoEventoObj.ShortDesc = new string(model.Descripcion.Take(46).ToArray())+"...";
+                    NuevoEventoObj.ShortDesc = new string(model.Descripcion.Take(250).ToArray())+"...";
                     NuevoEventoObj.idTipoEvento = model.tipoEvento;
                     NuevoEventoObj.Estado = model.Estado;
                     NuevoEventoObj.Ciudad = model.Municipio;
                     NuevoEventoObj.Cp = "CP "+model.CodigoPostal;
                     NuevoEventoObj.Municipio = model.Municipio;
-                    NuevoEventoObj.Calle = model.Calle + " " + model.NumExt;
+                    
+                    if (model.NumExt!=null || model.NumExt != "")
+                    {
+                        NuevoEventoObj.Calle = model.Calle + " " + model.NumExt;
+                    }
+                    else
+                    {
+                        NuevoEventoObj.Calle = model.Calle + " S/N";
+                    }
                     NuevoEventoObj.FechaEvento = model.FechaEvento.ToString("dd/MM/yyyy").ToUpper();
-                    NuevoEventoObj.Month = model.FechaEvento.ToString("MMMM").ToUpper();
+                    NuevoEventoObj.Month = model.FechaEvento.ToString("MMMM");
                     TextInfo textInfo = new CultureInfo("es-MX", false).TextInfo;
                     NuevoEventoObj.Month = textInfo.ToTitleCase(NuevoEventoObj.Month);
                     NuevoEventoObj.Day = model.FechaEvento.Day;
@@ -122,11 +130,10 @@ namespace Sistemaemprendedor.Controllers
         [AllowAnonymous]
         public ActionResult RegistroEvento(int id)
         {
-            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
-            NuevoAsistente model = new NuevoAsistente();
-            model.idEvento = id;
-            model.TituloEvento = bd.Evento.Where(x => x.id == id).Select(x => x.Nombre).FirstOrDefault();
-            return View(model);
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();        
+            ViewData["idEvento"] = id;            
+            ViewData["tituloEvento"] = bd.Evento.Where(x => x.id == id).Select(x => x.Nombre).FirstOrDefault();            
+            return View();
         }
 
         // POST: Nuevo Acceso a Evento
@@ -135,6 +142,9 @@ namespace Sistemaemprendedor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegistroEvento(NuevoAsistente model)
         {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ViewData["idEvento"] = model.idEvento;
+            ViewData["tituloEvento"] = bd.Evento.Where(x => x.id == model.idEvento).Select(x => x.Nombre).FirstOrDefault();
             ActionResponses ar = null;
             string msg = null;
             if (ModelState.IsValid)
@@ -142,10 +152,11 @@ namespace Sistemaemprendedor.Controllers
                 try
                 {
                     //Crea conexión a base de datos
-                    SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
                     RegistroAEvento NuevoRegistroObj = new RegistroAEvento();
-                    //Llena datos del evento                         
-                    NuevoRegistroObj.IdEvento = 20;
+                    //Llena datos del evento                                          
+                    NuevoRegistroObj.IdEvento = model.idEvento;
+                    NuevoRegistroObj.Perfil = model.Perfil;
+                    NuevoRegistroObj.Nombre = model.Nombre;
                     NuevoRegistroObj.Fecha_actualizacion = DateTime.Today;
                     NuevoRegistroObj.Fecha_Creacion = DateTime.Today;
                     NuevoRegistroObj.Usuario_actualizacion = 1;
@@ -197,38 +208,200 @@ namespace Sistemaemprendedor.Controllers
             return View(model);
         }
 
-        // GET: Nuevo Evento
+        // GET: Nueva Organización
         [AllowAnonymous]
         public ActionResult Organizacion()
         {
             return View();
         }
 
-        // POST: Nuevo Evento
+        // POST: Nueva Organización
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Organizacion(NuevaOrganizacionForm model)
+        public ActionResult Organizacion(NuevaOrganizacionForm model, HttpPostedFileBase file)
         {
+            string extension = "";
+            if (file != null)
+            {
+                extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+            }
+
+            ActionResponses ar = null;
+            string msg = null;
+            if (file != null && extension != ".jpg" && extension != ".jpeg" && extension != ".gif" && extension != ".png" && extension != ".bmp")
+            {
+                msg = "Formato de imágen incorrecto";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
                     //Crea conexión a base de datos
                     SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
-                    Evento NuevoEventoObj = new Evento();
+                    FileUploadController upload = new FileUploadController();
+                    Organizacion NuevaOrgObj = new Organizacion();
+                    //Obtiene municipio/Region
+                    int idRegion = 0;
+                    string Region = "";
+                    if (model.Municipio != "")
+                    {
+                        idRegion = bd.Municipios.Where(x => x.Nombre == model.Municipio).Select(x => x.idRegion).FirstOrDefault();
+                        Region = bd.Regiones.Where(x => x.Id == idRegion).Select(x => x.Nombre).FirstOrDefault();
+                    }
                     //Llena datos de organizacion
-                    
+                    NuevaOrgObj.estatus = 0;
+                    NuevaOrgObj.Fecha_actualizacion = DateTime.Today;
+                    NuevaOrgObj.Fecha_Creacion = DateTime.Today;
+                    NuevaOrgObj.Usuario_Creacion = 1;
+                    NuevaOrgObj.Usuario_actualizacion = 1;
+                    NuevaOrgObj.Nombre = model.Nombre;
+                    NuevaOrgObj.Municipio = model.Municipio;
+                    NuevaOrgObj.IdRegion = idRegion;
+                    NuevaOrgObj.Region = Region;
+                    NuevaOrgObj.CategoriaDesc = model.Categoria;
+                    NuevaOrgObj.ReconocidoPorINADEM = model.Reconocido;
+                    NuevaOrgObj.RepresentanteLegal = model.NombreRepresentante;
+                    NuevaOrgObj.Enlace = model.NombreEnlace;
+                    NuevaOrgObj.CargoEnlace = model.CargoEnlace;
+                    NuevaOrgObj.Sector = model.Sector;
+                    NuevaOrgObj.Correo = model.Correo;
+                    NuevaOrgObj.Direccion = model.Direccion;
+                    NuevaOrgObj.Telefono = model.Telefono;
+                    NuevaOrgObj.PaginaWeb = model.PaginaWeb;
+                    NuevaOrgObj.Descripcion = model.Descripcion;
+                    NuevaOrgObj.lat = model.lat;
+                    NuevaOrgObj.lon = model.lon;
+                    if (file != null)
+                    {
+                        //NuevaOrgObj.Imagen = AppConfig.SEBlobUrl + "/" + AppConfig.SE_stgContainer + "/" + file.FileName;
+                        NuevaOrgObj.Imagen = file.FileName;
+                        upload.uploadFileIntoBlob(file.FileName, file);
+                    }
+                    else
+                    {
+                        NuevaOrgObj.Imagen = "logo hidalgo crece contigo.png";
+                    }
+
                     //Agrega el objeto a la base y guarda los cambios.
-                    bd.Evento.Add(NuevoEventoObj);
+                    bd.Organizacion.Add(NuevaOrgObj);
                     bd.SaveChanges();
                 }
                 catch (Exception ex)
                 {
                     string mensajedeerror = ex.ToString();
+                    msg = "Se registro un error, intentelo nuevamente o reportelo al administrador del sistema";
+                    ar = new ActionResponses(ResponseType.ERROR, msg);
+                    ViewBag.ActionResponses = ar;
+                    return View(model);
                 }
+                msg = "Organización agregada correctamente, pronto nos pondremos en contacto contigo.";
+                ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                ViewBag.ActionResponses = ar;
             }
-            return View(model);
+            else
+            {
+                msg = "Revise los campos del formulario";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+            }
+            return View();
+        }
+
+        // GET: Nuevo Articulo
+        [Authorize]
+        public ActionResult Articulo()
+        {
+            return View();
+        }
+
+        // POST: Nuevo Articulo
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Articulo(NuevoArticuloForm model, HttpPostedFileBase file)
+        {
+            string extension = "";
+            if (file != null)
+            {
+                extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+            }
+
+            ActionResponses ar = null;
+            string msg = null;
+            if (file != null && extension != ".jpg" && extension != ".jpeg" && extension != ".gif" && extension != ".png" && extension != ".bmp")
+            {
+                msg = "Formato de imágen incorrecto";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Crea conexión a base de datos
+                    SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+                    FileUploadController upload = new FileUploadController();
+                    ArticulosInteres NuevoArticuloObj = new ArticulosInteres();
+                    //Llena datos del evento                
+                    NuevoArticuloObj.Nombre = model.Nombre;
+                    NuevoArticuloObj.Descripcion = model.Texto;
+                    NuevoArticuloObj.Introduccion = model.Intro;
+                    NuevoArticuloObj.FechaCreacion = DateTime.Today;
+                    NuevoArticuloObj.FechaActualizacion = DateTime.Today;
+                    NuevoArticuloObj.Fecha = DateTime.Today;
+                    int UserId = 1;
+                    bool UserIdValid = int.TryParse(User.Identity.GetUserId(), out UserId);
+                    if (UserIdValid)
+                    {
+                        NuevoArticuloObj.UsuarioCreacion = UserId;
+                        NuevoArticuloObj.UsuarioActualizacion = UserId;
+                    }
+                    else
+                    {
+                        NuevoArticuloObj.UsuarioCreacion = 1;
+                        NuevoArticuloObj.UsuarioActualizacion = 1;
+                    }
+                    NuevoArticuloObj.Autor = model.Autor;
+                    NuevoArticuloObj.Estatus = 1;
+                    CategoriasArticulos Categoria = bd.CategoriasArticulos.Where(x => x.IdCategoria == model.Categoria).Select(x => x).FirstOrDefault();
+                    NuevoArticuloObj.IdCategoria = Categoria.IdCategoria;
+                    NuevoArticuloObj.Categoria = Categoria.Nombre;
+                    if (file != null)
+                    {
+                        //NuevaOrgObj.Imagen = AppConfig.SEBlobUrl + "/" + AppConfig.SE_stgContainer + "/" + file.FileName;
+                        NuevoArticuloObj.Imagen = file.FileName;
+                        upload.uploadFileIntoBlob(file.FileName, file);
+                    }
+                    else
+                    {
+                        NuevoArticuloObj.Imagen = "logo hidalgo crece contigo.png";
+                    }
+                    //Agrega el objeto a la base y guarda los cambios.
+                    bd.ArticulosInteres.Add(NuevoArticuloObj);
+                    bd.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    string mensajedeerror = ex.ToString();
+                    msg = "Se registro un error, intentelo nuevamente o reportelo al administrador del sistema";
+                    ar = new ActionResponses(ResponseType.ERROR, msg);
+                    ViewBag.ActionResponses = ar;
+                    return View(model);
+                }
+                msg = "Articulo agregado correctamente";
+                ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                ViewBag.ActionResponses = ar;
+            }
+            else
+            {
+                msg = "Revise los campos del formulario";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+            }
+            return View();
         }
     }
 }

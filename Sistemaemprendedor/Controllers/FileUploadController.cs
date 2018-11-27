@@ -18,6 +18,23 @@ namespace Sistemaemprendedor.Controllers
       
     public class FileUploadController : Controller
     {
+        public void DeleteBlob(string fileName)
+        {
+            try
+            {
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(AppConfig.SE_stg);//se obtiene la configuracion de la conexion al storage
+                var client = new CloudBlobClient(new Uri(ConfigurationManager.AppSettings["SEBlobUrl"]), storageAccount.Credentials);// se crea un cliente             
+                var container = client.GetContainerReference(ConfigurationManager.AppSettings["SE_stgContainer"]);//se abre el contenedor           
+                var blockBlob = container.GetBlockBlobReference(fileName);
+                //delete blob from container    
+                blockBlob.Delete();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            
+        }
         /// <summary>
         /// Metodo que permite subir al storage un archivo que viene desde un formulario POST
         /// </summary>

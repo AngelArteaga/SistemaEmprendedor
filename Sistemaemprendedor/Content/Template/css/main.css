@@ -45,8 +45,10 @@ body h6 {
 	font-weight: 400;
 	line-height: 1.5;
 	font-style: normal;
-	text-transform: capitalize;
-	font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+	/*text-transform: capitalize;*/
+    /*CambioF tahoma, sans-serif*/
+	/*font-family: 'Work Sans', Arial, Helvetica, sans-serif;*/
+    font-family: tahoma, sans-serif;
 }
 h1 { font-size: 48px;}
 h2 { font-size: 36px;}
@@ -129,14 +131,14 @@ input[type="color"],
 	display: inline-block;
 	vertical-align: middle;
 	border: 1px solid #ddd;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .form-group{ margin:0 0 20px;}
 .form-control::-moz-placeholder{
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	color: #767676;
 }
 input:focus,
@@ -280,7 +282,7 @@ table > tfoot > tr > td {
 table thead tr th {
 	border-top: 1px solid #d2d2d2;
 	text-align: center;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -331,7 +333,7 @@ address { font-style: italic; }
 	background: #373542;
 	display: inline-block;
 	vertical-align: middle;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	font:400 14px/40px 'Work Sans', Arial, Helvetica, sans-serif;
 }
 .tg-btn-sm{
@@ -383,7 +385,7 @@ address { font-style: italic; }
 	position:relative;
 	text-align: center;
 	border-radius: 30px;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 }
 .tg-inputwithicon.tg-facebook .tg-icon,
 .tg-checkbox.tg-facebook,
@@ -556,7 +558,7 @@ li.tg-rss a:hover{background:#ff6600;}
 	line-height: 16px;
 	padding: 6px 11px;
 	border: 1px solid #ddd;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 }
 .tg-btndropdown:hover,
 .tg-btndropdown:focus{color: #767676;}
@@ -587,7 +589,7 @@ li.tg-rss a:hover{background:#ff6600;}
 	line-height: 16px;
 	visibility: hidden;
 	position: absolute;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	box-shadow: 0 0 10px 1px rgba(0,0,0,0.10);
 }
 .tg-dropdownmenu li{
@@ -705,7 +707,7 @@ li.tg-rss a:hover{background:#ff6600;}
 	color: #424242;
 	list-style: none;
 	text-align: left;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	font:13px/44px 'Work Sans', Arial, Helvetica, sans-serif;
 }
 .tg-breadcrumb li{
@@ -880,7 +882,7 @@ li.tg-rss a:hover{background:#ff6600;}
 .tg-addnav,
 .tg-navigationarea .tg-btn{float: right;}
 .tg-nav{
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	font: 400 13px/32px 'Work Sans', Arial, Helvetica, sans-serif;
 }
 .tg-navigation{
@@ -1824,7 +1826,8 @@ body.tg-home .tg-shortcode{padding:0;}
 	margin: 15px 0;
 	position:relative;
 	text-align: center;
-	background: #fcfcfc;
+    background: #dee1e2;
+	/*background: #fcfcfc;*/    
 }
 .tg-iconbox{
 	width: 100%;
@@ -1870,7 +1873,7 @@ body.tg-home .tg-shortcode{padding:0;}
 	line-height: 14px;
 	display: inline-block;
 	vertical-align: top;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 }
 .tg-feature:hover{
 	background: #fff;
@@ -2252,7 +2255,7 @@ body.tg-homethree .tg-sectiontitles h2{color:#424242;}
 	border-radius:0;
 	box-shadow:none;
 	background: #fff;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid #021b77;
 }
 .tg-panel + .tg-panel{margin: 10px 0 0;}
 .tg-panel > h4{
@@ -2265,7 +2268,7 @@ body.tg-homethree .tg-sectiontitles h2{color:#424242;}
 	padding: 0 20px;
 	line-height: 50px;
 	position:relative;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 .tg-panel > h4:after{
@@ -3091,8 +3094,11 @@ body.tg-homeone .tg-event .tg-upcomingeventcounter{
 	float:left;
 }
 .tg-widgetprofile figure img{
-	width:100%;
-	height:auto;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 50%;    
 	display:block;
 }
 .tg-widgetprofile .tg-themepostcontent{padding-bottom:0;}
@@ -3127,7 +3133,7 @@ body.tg-homeone .tg-event .tg-upcomingeventcounter{
 	line-height: 30px;
 	overflow: hidden;
 	position: relative;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	padding: 10px 20px 10px 40px;
 }
 .tg-widgetbrochure a:hover{color: #fff;}
@@ -3903,7 +3909,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	font-size:14px;
 	line-height:38px;
 	margin:0 5px 0 0;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 }
 .tg-sortitems .form-group .tg-select{
 	border: 0;
@@ -3921,7 +3927,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	padding:0;
 	color:#333;
 	height:38px;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 }
 .tg-formtheme fieldset.tg-productholder{margin:-15px 0;}
 .tg-product{
@@ -4201,7 +4207,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	text-align:left;
 	font-size:14px;
 	line-height:14px;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 }
 .tg-navtabs li{
 	float:left;
@@ -4636,7 +4642,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	list-style: none;
 	padding: 0 0 20px;
 	text-align: center;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 	border-bottom:1px solid #dbdbdb;
 	font: 400 13px/17px 'Open Sans', Arial, Helvetica, sans-serif;
 }
@@ -5011,7 +5017,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	width:100%;
 	float:left;
 	position: relative;
-	background:#f7f7f7;
+	background:#003953;
 }
 .tg-panneltitle i{
 	top: 0;
@@ -5023,14 +5029,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	line-height:49px;
 	text-align:center;
 	margin:0 20px 0 0;
-	background:#eaeaea;
+	background:#003953;
+    color:white;
 	position: absolute;
 }
 .tg-panneltitle a{
 	width:100%;
 	float:left;
 	z-index: 2;
-	color:#767676;
+	color:white;
 	font-size:14px;
 	line-height:20px;
 	position: relative;
@@ -5087,6 +5094,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', e
 	color:#fff;
 	padding:0 8px;
 	border-radius:5px;
+}
+.tg-secendorycolor:hover{
+	border-color:#fff;
 }
 .tg-shortcodeblockquote{
 	width:100%;
@@ -6186,34 +6196,85 @@ body.tg-homefive{border:0;}
 .alert-login {
     margin: 10px 10px 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* styles for '...' */ 
+.block-with-text {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 2.4em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: left;  
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+/* create the ... */
+.block-with-text:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  /* bg color = bg color under block */
+  background: white;
+}
+/* styles for '...' */ 
+.block-with-text-title {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 1.2em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: left;  
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+/* create the ... */
+.block-with-text-title:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text-title:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  /* bg color = bg color under block */
+  background: white;
+}

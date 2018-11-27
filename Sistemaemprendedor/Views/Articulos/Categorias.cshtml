@@ -1,0 +1,160 @@
+﻿@model  Sistemaemprendedor.Models.CategoriasArticulosModelo
+@{
+    ViewBag.Title = "Categorias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--************************************
+                Inner Banner Start
+        *************************************-->
+<div class="tg-innerbanner tg-haslayout">
+    <div class="tg-pagetitle tg-bgred">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pageheading">
+                        <figure><img src="~/Content/Images/public/portada-04.png" alt="image description"></figure>
+                        <h2 style="text-align:center">E C O S I S T E M A<span>E M P R E N D E D O R</span><span></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--************************************
+        Inner Banner End
+*************************************-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="">Articulos de Interés</a></li>
+                <li class="tg-active">Categorías</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="container tg-Minisectionspace">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+            <div class="tg-sectionhead">
+                <div class="tg-sectiontitles">
+                    <h2>Articulos de Interés</h2>
+                    <h3>Selecciona una Categoría</h3>
+                </div>
+            </div>
+        </div>
+        <div id="Cat" class="tg-Minisectionspace tg-haslayout col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display:block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
+                                     
+                        
+                            @foreach (var categ in Model.Categorias)
+                            {
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                    <div class="tg-flippanel">
+                                        <div class="front">
+                                            <div class="tg-frontbox">
+                                                <figure data-vide-bg="poster: https://sestgpr.blob.core.windows.net/images/@categ.imagen" data-vide-options="position: 0% 50%">
+                                                    <figcaption>
+                                                        <span class="lnr lnr-clock"></span>
+                                                        <h3>@categ.Nombre</h3>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="tg-backbox">
+                                                <span class="lnr lnr-clock"></span>
+                                                <h3>@categ.Nombre</h3>
+                                                <div class="tg-description">
+                                                    <p>@categ.Descripcion</p>
+                                                </div>
+                                                <a class="tg-btnregular tg-active" onclick="ObtenerArts(@categ.IdCategoria)">Ver articulos...</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                              
+                            }                                                                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="CatAndArts" class="tg-Minisectionspace tg-haslayout" style="display:none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="tg-widget tg-widgetcatagories">
+                            <div class="tg-widgettitle">
+                                <center><h3>Elije una categoría</h3></center>
+                            </div>
+                            <ul>
+                                @foreach (var categ in Model.Categorias)
+                                {
+                                    <li>
+                                        <a href="#" onclick="ObtenerArts(@categ.IdCategoria)"><span><b><i>@categ.Nombre</i></b></span></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>    
+                        @if (Model.ArticulosRecientes.Count() > 0)
+                        {
+
+                            <div class="tg-widget tg-widgetmenu">
+                                <div class="tg-widgettitle tg-description tg-secendorycolor">
+                                    <center><h3>Ultimas entradas</h3></center>
+                                </div>
+                                <ul>
+                                    @foreach (var art in Model.ArticulosRecientes)
+                                    {
+                                        <li><i class="icon-news"></i><a href="/Articulos/Articulo?id=@art.Id">@art.Nombre</a></li>
+                                    }
+                                    
+                                </ul>
+                            </div>                            
+                        }                                        
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">                        
+                        <div id="Articulos" class="">
+
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ObtenerArts(id){
+        var cat = id;
+        $.ajax({
+            type: "POST",
+            url: "/Articulos/ListaArticulos",
+            data: '{id: "' + cat + '" }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (response) {
+                $('#Articulos').html(response);
+                $('#Cat').hide();
+                $('#CatAndArts').show();
+                $('html,body').animate({
+                    scrollTop: $("#Articulos").offset().top
+                },
+        'slow');
+            },
+            failure: function (response) {
+                console.log("error");
+            },
+            error: function (response) {
+                console.log("error");
+            }
+        });
+    }
+</script>
+
+

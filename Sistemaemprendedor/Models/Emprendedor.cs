@@ -36,7 +36,7 @@ namespace Sistemaemprendedor.Models
         public string Twitter { get; set; }
         public string Imagen { get; set; }
     
-        public virtual Organizacion Organizacion { get; set; }
         public virtual Regiones Regiones { get; set; }
+        public virtual Organizacion Organizacion { get; set; }
     }
 }

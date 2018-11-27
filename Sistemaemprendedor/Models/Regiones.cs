@@ -23,6 +23,8 @@ namespace Sistemaemprendedor.Models
     
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string URL { get; set; }
+        public string Infografia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emprendedor> Emprendedor { get; set; }

@@ -1,0 +1,179 @@
+﻿@model  Sistemaemprendedor.Models.ManageCatalogo
+@{
+    ViewBag.Title = "AsistentesEvento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/Buttons-1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="tg-breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("AdministrarEventos", "Manage")">Administrar Eventos</a></li>
+                <li class="tg-active">Asistentes @Model.Evento.Nombre</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+@if (Model.ListaAsistentesDeEventos != null)
+{
+    <div class="tg-haslayout">
+        <div class="container">
+            <div class="row">                
+                <div id="tg-twocolumns" class="tg-twocolumns">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div id="tg-content" class="tg-content">
+                            <div class="tg-sectionhead">
+                                <div class="tg-sectiontitles">
+                                    <h2>Lista de asistentes a @Model.Evento.Nombre</h2>
+                                </div>
+                                <div class="tg-description">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="tg-eventdetail">
+                                <table id="Asistentes" class="display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Evento</th>
+                                            <th>Correo</th>
+                                            <th>Perfil</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Materno</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Edad</th>
+                                            <th>CURP</th>
+                                            <th>Telefono</th>
+                                            <th>Sexo</th>
+                                            <th>Escolaridad</th>
+                                            <th>Municipio</th>
+                                            <th>Empresa</th>
+                                            <th>Etapa</th>
+                                            <th>Sector</th>
+                                            <th>Domicilio</th>                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var asistente in Model.ListaAsistentesDeEventos)
+                                        {
+                                            <tr>
+                                                <td>@Model.Evento.Nombre</td>
+                                                <td>@asistente.Correo</td>
+                                                <td>@asistente.Perfil</td>
+                                                <td>@asistente.Nombre</td>
+                                                <td>@asistente.ApellidoPaterno</td>
+                                                <td>@asistente.ApellidoMaterno</td>
+                                                <td>@asistente.FechaNacimiento</td>
+                                                <td>@asistente.Edad</td>
+                                                <td>@asistente.CURP</td>
+                                                <td>@asistente.Telefono</td>
+                                                <td>@asistente.Sexo</td>
+                                                <td>@asistente.Escolaridad</td>                                   
+                                                <td>@asistente.Municipio</td> 
+                                                <td>@asistente.Empresa</td> 
+                                                <td>@asistente.Etapa</td>
+                                                <td>@asistente.Sector</td>
+                                                <td>@asistente.Domicilio</td>                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+
+    $(document).ready(function () {
+        $('#Asistentes').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                "search": "Buscar:",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Sigueinte"
+                }
+            },
+            dom: 'Bfrtip',
+            buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Lista de Asistentes - Ecosistema Emprendedor'
+            },
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                title: 'Lista de Asistentes - Ecosistema Emprendedor'
+            }
+            ],
+            "columnDefs": [
+            {
+                "targets": [16],
+                "visible": false
+            },
+            {
+                "targets": [6],
+                "visible": false
+            },
+            {
+                "targets": [7],
+                "visible": false
+            },
+            {
+                "targets": [8],
+                "visible": false
+            },
+            {
+                "targets": [9],
+                "visible": false
+            },
+            {
+                "targets": [10],
+                "visible": false
+            },
+            {
+                "targets": [11],
+                "visible": false
+            },
+            {
+                "targets": [12],
+                "visible": false
+            },
+            {
+                "targets": [13],
+                "visible": false
+            },
+            {
+                "targets": [14],
+                "visible": false
+            },
+            {
+                "targets": [15],
+                "visible": false
+            }]
+        });
+    });
+    </script>
+}
+
+
+
+

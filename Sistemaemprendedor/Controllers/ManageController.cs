@@ -7,9 +7,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Sistemaemprendedor.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Sistemaemprendedor.Controllers
-{
+{    
     [Authorize]
     public class ManageController : Controller
     {
@@ -20,26 +21,560 @@ namespace Sistemaemprendedor.Controllers
         {
         }
 
+        // Editar Organización
+        [Authorize(Roles = "Administrador")]
+        public ActionResult EditarOrganizacion(int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            Organizacion org = bd.Organizacion.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+            EditarOrganizacionForm model = new EditarOrganizacionForm();
+            ViewBag.ActionResponses = TempData["AcResponse"];
+            if (org != null)
+            {
+                //Llena datos de organizacion  
+                model.Estatus = org.estatus;
+                model.id = org.id;        
+                model.Nombre = org.Nombre;
+                model.Municipio = org.Municipio;               
+                model.Categoria = org.CategoriaDesc;
+                model.Reconocido = org.ReconocidoPorINADEM;
+                model.NombreRepresentante = org.RepresentanteLegal;
+                model.NombreEnlace = org.Enlace;
+                model.CargoEnlace = org.CargoEnlace;
+                model.Sector = org.Sector;
+                model.Correo = org.Correo;
+                model.Direccion = org.Direccion;
+                model.Telefono = org.Telefono;
+                model.PaginaWeb = org.PaginaWeb;
+                model.Descripcion = org.Descripcion;
+                model.Imagen = org.Imagen;
+            }
+            return View(model);
+        }
+
+        // Actualizar Organización
+        [Authorize(Roles = "Administrador")]
+        public ActionResult ActualizarOrganizacion(EditarOrganizacionForm model, HttpPostedFileBase file)
+        {
+            string extension = "";
+            if (file != null)
+            {
+                extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+            }
+
+            ActionResponses ar = null;
+            string msg = null;
+            if (file != null && extension != ".jpg" && extension != ".jpeg" && extension != ".gif" && extension != ".png" && extension != ".bmp")
+            {
+                msg = "Formato de imágen incorrecto";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+                TempData["AcResponse"] = ar;
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Crea conexión a base de datos
+                    SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+                    FileUploadController upload = new FileUploadController();
+                    Organizacion NuevaOrgObj = bd.Organizacion.Where(x=>x.id == model.id).Select(x=>x).FirstOrDefault();
+                    //Obtiene municipio/Region
+                    int idRegion = 0;
+                    string Region = "";
+                    if (model.Municipio != "")
+                    {
+                        idRegion = bd.Municipios.Where(x => x.Nombre == model.Municipio).Select(x => x.idRegion).FirstOrDefault();
+                        Region = bd.Regiones.Where(x => x.Id == idRegion).Select(x => x.Nombre).FirstOrDefault();
+                    }
+                    //Llena datos de organizacion
+                    NuevaOrgObj.estatus = model.Estatus;
+                    NuevaOrgObj.Fecha_actualizacion = DateTime.Today;
+                    int UserId = 1;
+                    bool UserIdValid = int.TryParse(User.Identity.GetUserId(), out UserId);
+                    if (UserIdValid)
+                    {
+                        NuevaOrgObj.Usuario_actualizacion = UserId;
+                    }
+                    else
+                    {
+                        NuevaOrgObj.Usuario_actualizacion = 1;
+                    }                     
+                    NuevaOrgObj.Nombre = model.Nombre;
+                    NuevaOrgObj.Municipio = model.Municipio;
+                    NuevaOrgObj.IdRegion = idRegion;
+                    NuevaOrgObj.Region = Region;
+                    NuevaOrgObj.CategoriaDesc = model.Categoria;
+                    NuevaOrgObj.ReconocidoPorINADEM = model.Reconocido;
+                    NuevaOrgObj.RepresentanteLegal = model.NombreRepresentante;
+                    NuevaOrgObj.Enlace = model.NombreEnlace;
+                    NuevaOrgObj.CargoEnlace = model.CargoEnlace;
+                    NuevaOrgObj.Sector = model.Sector;
+                    NuevaOrgObj.Correo = model.Correo;
+                    NuevaOrgObj.Direccion = model.Direccion;
+                    NuevaOrgObj.Telefono = model.Telefono;
+                    NuevaOrgObj.PaginaWeb = model.PaginaWeb;
+                    NuevaOrgObj.Descripcion = model.Descripcion;
+                    if (file != null)
+                    {
+                        //NuevaOrgObj.Imagen = AppConfig.SEBlobUrl + "/" + AppConfig.SE_stgContainer + "/" + file.FileName;
+                        NuevaOrgObj.Imagen = file.FileName;
+                        upload.uploadFileIntoBlob(file.FileName, file);
+                    }                    
+
+                    //Agrega el objeto a la base y guarda los cambios.
+                    //bd.Organizacion.Add(NuevaOrgObj);
+                    bd.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    string mensajedeerror = ex.ToString();
+                    msg = "Se registro un error, intentelo nuevamente o reportelo al administrador del sistema";
+                    ar = new ActionResponses(ResponseType.ERROR, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["AcResponse"] = ar;
+                    return RedirectToAction("EditarOrganizacion", new { id = model.id });
+                }
+                msg = "Organización actualizada correctamente.";
+                ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                TempData["AcResponse"] = ar;
+                ViewBag.ActionResponses = ar;
+            }
+            else
+            {
+                msg = "Revise los campos del formulario";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+                TempData["AcResponse"] = ar;
+            }
+            return RedirectToAction("EditarOrganizacion", new { id = model.id });
+        }
+
+        // Editar Articulo
+        [Authorize(Roles = "Administrador")]
+        public ActionResult EditarArticulo(int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ArticulosInteres art = bd.ArticulosInteres.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+            EditarArticuloForm model = new EditarArticuloForm();
+            ViewBag.ActionResponses = TempData["AcResponse"];
+            if (art != null)
+            {
+                //Llena datos de organizacion  
+                model.Estatus = art.Estatus;
+                model.id = art.Id;
+                model.Nombre = art.Nombre;
+                model.Autor = art.Autor;
+                model.Categoria = art.Id;
+                model.Intro = art.Introduccion;
+                model.Texto = art.Descripcion;                
+                model.Imagen = art.Imagen;
+            }
+            return View(model);
+        }
+
+        // Actualizar Organización
+        [Authorize(Roles = "Administrador")]
+        public ActionResult ActualizarArticulo(EditarArticuloForm model, HttpPostedFileBase file)
+        {
+            string extension = "";
+            if (file != null)
+            {
+                extension = System.IO.Path.GetExtension(file.FileName).ToLower();
+            }
+
+            ActionResponses ar = null;
+            string msg = null;
+            if (file != null && extension != ".jpg" && extension != ".jpeg" && extension != ".gif" && extension != ".png" && extension != ".bmp")
+            {
+                msg = "Formato de imágen incorrecto";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+                TempData["AcResponse"] = ar;
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Crea conexión a base de datos
+                    SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+                    FileUploadController upload = new FileUploadController();
+                    ArticulosInteres NuevoArtObj = bd.ArticulosInteres.Where(x => x.Id == model.id).Select(x => x).FirstOrDefault();
+                    //Obtiene categoria
+                    if (model.Categoria != 0)
+                    {
+                        NuevoArtObj.Categoria = bd.CategoriasArticulos.Where(x => x.IdCategoria == model.Categoria).Select(x => x.Nombre).FirstOrDefault();
+                        NuevoArtObj.IdCategoria = model.Categoria;
+                    }
+                    //Llena datos de organizacion
+                    NuevoArtObj.Estatus = model.Estatus;
+                    NuevoArtObj.FechaActualizacion = DateTime.Today;
+                    int UserId = 1;
+                    bool UserIdValid = int.TryParse(User.Identity.GetUserId(), out UserId);
+                    if (UserIdValid)
+                    {
+                        NuevoArtObj.UsuarioActualizacion = UserId;
+                    }
+                    else
+                    {
+                        NuevoArtObj.UsuarioActualizacion = 1;
+                    }
+                    NuevoArtObj.Nombre = model.Nombre;
+                    NuevoArtObj.Introduccion = model.Intro;
+                    NuevoArtObj.Descripcion = model.Texto;
+                    NuevoArtObj.Autor = model.Autor;                    
+                    if (file != null)
+                    {
+                        //NuevaOrgObj.Imagen = AppConfig.SEBlobUrl + "/" + AppConfig.SE_stgContainer + "/" + file.FileName;
+                        NuevoArtObj.Imagen = file.FileName;
+                        upload.uploadFileIntoBlob(file.FileName, file);
+                    }
+
+                    //Agrega el objeto a la base y guarda los cambios.                    
+                    bd.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    string mensajedeerror = ex.ToString();
+                    msg = "Se registro un error, intentelo nuevamente o reportelo al administrador del sistema";
+                    ar = new ActionResponses(ResponseType.ERROR, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["AcResponse"] = ar;
+                    return RedirectToAction("EditarArticulo", new { id = model.id });
+                }
+                msg = "Articulo actualizado correctamente.";
+                ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                TempData["AcResponse"] = ar;
+                ViewBag.ActionResponses = ar;
+            }
+            else
+            {
+                msg = "Revise los campos del formulario";
+                ar = new ActionResponses(ResponseType.ERROR, msg);
+                ViewBag.ActionResponses = ar;
+                TempData["AcResponse"] = ar;
+            }
+            return RedirectToAction("EditarArticulo", new { id = model.id });
+        }
+
+        // Eliminar
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Eliminar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            ManageCatalogo model = new ManageCatalogo();
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoBorrar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoBorrar!= null)
+                {
+                    try {
+                        model.ListaAsistentesDeEventos = bd.RegistroAEvento.Where(x => x.IdEvento == id).Select(x => x).ToList();
+                        if (model.ListaAsistentesDeEventos != null)
+                        {
+                            foreach (var Asistente in model.ListaAsistentesDeEventos){
+                                bd.Entry(Asistente).State = System.Data.Entity.EntityState.Deleted;
+                                bd.SaveChanges();
+                            }
+                        }
+                        bd.Entry(EventoBorrar).State = System.Data.Entity.EntityState.Deleted;
+                        bd.SaveChanges();
+                    }
+                    catch(Exception ex) {
+                        msg = "Existe un problema al eliminar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);                               
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento eliminado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);                    
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+            if (tipo == 2)
+            {
+                Organizacion OrgBorrar = bd.Organizacion.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (OrgBorrar != null)
+                {
+                    try
+                    {   
+                        if(OrgBorrar.Imagen != null && OrgBorrar.Imagen != "logo hidalgo crece contigo.png")
+                        {
+                            FileUploadController delete = new FileUploadController();
+                            delete.DeleteBlob(OrgBorrar.Imagen);
+                        }                    
+                        bd.Entry(OrgBorrar).State = System.Data.Entity.EntityState.Deleted;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al eliminar esta organización, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                    }
+                    msg = "Organización eliminada correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                }
+            }
+            if (tipo == 3)
+            {
+                ArticulosInteres ArticuloBorrar = bd.ArticulosInteres.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+                if (ArticuloBorrar != null)
+                {
+                    try
+                    {
+                        if (ArticuloBorrar.Imagen != null && ArticuloBorrar.Imagen != "logo hidalgo crece contigo.png")
+                        {
+                            FileUploadController delete = new FileUploadController();
+                            delete.DeleteBlob(ArticuloBorrar.Imagen);
+                        }
+                        bd.Entry(ArticuloBorrar).State = System.Data.Entity.EntityState.Deleted;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al eliminar este articulo, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarArticulos", "Manage");
+                    }
+                    msg = "Articulo eliminado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarArticulos", "Manage");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Activar
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Activar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoActivar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoActivar != null)
+                {
+                    try
+                    {
+                        EventoActivar.estatus = 2;
+                        bd.Entry(EventoActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al activar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento activado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+            if (tipo == 2)
+            {
+                Organizacion OrganizacionActivar = bd.Organizacion.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (OrganizacionActivar != null && (OrganizacionActivar.estatus == 0 || OrganizacionActivar.estatus == 2))
+                {
+                    try
+                    {
+                        OrganizacionActivar.estatus = 1;
+                        bd.Entry(OrganizacionActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al activar esta organizacion, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                    }
+                    msg = "Evento activado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                }
+            }
+            if (tipo == 3)
+            {
+                ArticulosInteres ArtActivar = bd.ArticulosInteres.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+                if (ArtActivar != null && (ArtActivar.Estatus == 0 || ArtActivar.Estatus == 2))
+                {
+                    try
+                    {
+                        ArtActivar.Estatus = 1;
+                        bd.Entry(ArtActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al activar este articulo, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarArticulos", "Manage");
+                    }
+                    msg = "Articulo activado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarArticulos", "Manage");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Desactivar
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Desactivar(int tipo, int id)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ActionResponses ar = null;
+            string msg = null;
+            if (tipo == 1)
+            {
+                Evento EventoActivar = bd.Evento.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (EventoActivar != null)
+                {
+                    try
+                    {
+                        EventoActivar.estatus = 3;
+                        bd.Entry(EventoActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al desactivar este evento, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarEventos", "Manage");
+                    }
+                    msg = "Evento desactivado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarEventos", "Manage");
+                }
+            }
+            if (tipo == 2)
+            {
+                Organizacion OrgActivar = bd.Organizacion.Where(x => x.id == id).Select(x => x).FirstOrDefault();
+                if (OrgActivar != null && OrgActivar.estatus == 1)
+                {
+                    try
+                    {
+                        OrgActivar.estatus = 2;
+                        bd.Entry(OrgActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al desactivar esta organización, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                    }
+                    msg = "Organización desactivada correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarOrganizaciones", "Manage");
+                }
+            }
+            if (tipo == 3)
+            {
+                ArticulosInteres ArtActivar = bd.ArticulosInteres.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+                if (ArtActivar != null && ArtActivar.Estatus == 1)
+                {
+                    try
+                    {
+                        ArtActivar.Estatus = 2;
+                        bd.Entry(ArtActivar).State = System.Data.Entity.EntityState.Modified;
+                        bd.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Existe un problema al desactivar este articulo, consulta al administrador";
+                        ar = new ActionResponses(ResponseType.ERROR, msg);
+                        ViewBag.ActionResponses = ar;
+                        TempData["Message"] = ar;
+                        return RedirectToAction("AdministrarArticulos", "Manage");
+                    }
+                    msg = "Articulo desactivado correctamente";
+                    ar = new ActionResponses(ResponseType.SUCCESS, msg);
+                    ViewBag.ActionResponses = ar;
+                    TempData["Message"] = ar;
+                    return RedirectToAction("AdministrarArticulos", "Manage");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // GET: /Lista de usuarios
+        [Authorize(Roles = "Administrador")]
         public ActionResult Usuarios()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             Usuarios Users = new Usuarios();
-            Users.UsersList = bd.AspNetUsers.ToList();
+            Users.UsersList = bd.AspNetUsers.Where(x=>x.Email != "admin@sistema.com").Select(x=>x).ToList();
             return View(Users);
         }
 
+        //
+        // GET: /Lista de asistentes
+        [Authorize(Roles = "Administrador")]
+        public ActionResult AsistentesEvento(int idEvento)
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ManageCatalogo model = new ManageCatalogo();
+            model.ListaAsistentesDeEventos = bd.RegistroAEvento.Where(x => x.IdEvento == idEvento).Select(x => x).ToList();
+            model.Evento = bd.Evento.Where(x => x.id == idEvento).Select(x => x).FirstOrDefault();
+            return View(model);
+        }
+
         // GET: /Admin eventos
+        [Authorize(Roles = "Administrador")]
         public ActionResult AdministrarEventos()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             ManageCatalogo Manage = new ManageCatalogo();
-            Manage.ListaEventos = bd.Evento.ToList();
+            string ar = null;
+            Manage.ListaEventos = bd.Evento.ToList();            
+            if (TempData["Message"] != null)
+            {
+                ViewBag.ActionResponses = TempData["Message"];
+            }            
             return View(Manage);
         }
 
         // GET: /Admin Emprendedores
+        [Authorize(Roles = "Administrador")]
         public ActionResult AdministrarEmprendedores()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
@@ -49,11 +584,22 @@ namespace Sistemaemprendedor.Controllers
         }
 
         // GET: /Admin Organizaciones
+        [Authorize(Roles = "Administrador")]
         public ActionResult AdministrarOrganizaciones()
         {
             SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
             ManageCatalogo Manage = new ManageCatalogo();
-            Manage.ListaOrganizaciones = bd.Organizacion.ToList();
+            Manage.ListaOrganizaciones = bd.Organizacion.ToList();            
+            return View(Manage);
+        }
+
+        // GET: /Admin Articulos
+        [Authorize(Roles = "Administrador")]
+        public ActionResult AdministrarArticulos()
+        {
+            SistemaEmprendedorEntities bd = new SistemaEmprendedorEntities();
+            ManageCatalogo Manage = new ManageCatalogo();
+            Manage.ListaArticulos = bd.ArticulosInteres.ToList();
             return View(Manage);
         }
 
